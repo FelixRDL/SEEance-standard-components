@@ -1,0 +1,19 @@
+{
+  "name": "issues",
+  "version": "0.0.0",
+  "description": "This datasource fetches all issues registered for a repository.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node ./test rmccue test-repository"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^17.11.0"
+  },
+  "seeance": {
+    "depends_on": [],
+    "type": "datasource.github"
+  }
+}
