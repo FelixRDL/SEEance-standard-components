@@ -1,0 +1,19 @@
+{
+  "name": "milestones",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node ./test rmccue test-repository"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^17.11.0"
+  },
+  "seeance": {
+    "depends_on": [],
+    "type": "datasource.github"
+  }
+}
