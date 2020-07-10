@@ -1,0 +1,22 @@
+{
+  "name": "commits",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test.js https://github.com/pichsenmeister/wienerscript"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parse-diff": "^0.7.0",
+    "rimraf": "^3.0.2",
+    "simple-git": "^2.8.0"
+  },
+  "seeance": {
+    "depends_on": [],
+    "type": "datasource.git",
+    "ttl": 3600
+  }
+}
