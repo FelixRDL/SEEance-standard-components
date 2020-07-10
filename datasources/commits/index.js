@@ -7,6 +7,17 @@ module.exports = async function (localPath, token = undefined) {
         let commits = (await git.log()).all
         const hashes = commits.map(c => c.hash)
         let promises = []
+        
+        const firstCommit = commits[0]
+        promises.push(new Promise(async function(resolve, reject) {
+         firstCommit.diffs = diffParse(await git.diff([firstCommit.hash], ['HEAD']))   
+         firstCommit.additions = firstCommit.diffs.reduce((a, diff) => a + diff.additions, 0)
+         firstCommit.deletions = firstCommit.diffs.reduce((a, diff) => a + diff.deletions, 0)
+         firstCommit.filesChanged = firstCommit.diffs.map(d => d.to)
+         resolve(firstCommit)
+        }))
+        
+        
         for (let i = 1; i < hashes.length; i++) {
             let c = commits[i]
             let p = commits[i-1]
@@ -20,7 +31,7 @@ module.exports = async function (localPath, token = undefined) {
                 resolve(commit)
             }))
         }
-        commits = [commits[0]].concat(await Promise.all(promises))
+        commits = await Promise.all(promises)
         commits.push()
         resolve(commits)
     })
