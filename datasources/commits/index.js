@@ -8,8 +8,10 @@ module.exports = async function (localPath, token = undefined) {
         const hashes = commits.map(c => c.hash)
         let promises = []
         
-        commits = commits.sort((a, b) => a.date < b.date)
-        
+        commits.sort((a, b) =>
+            new Date(a.date) <= new Date(b.date) ? -1: 1
+        )
+
         const firstCommit = commits[0]
         promises.push(new Promise(async function(resolve, reject) {
          firstCommit.diffs = diffParse(await git.diff([firstCommit.hash], ['HEAD']))   
