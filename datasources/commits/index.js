@@ -8,7 +8,7 @@ module.exports = async function (localPath, token = undefined) {
         const hashes = commits.map(c => c.hash)
         let promises = []
         
-        commits = commits.sort((a, b) => a.date > b.date)
+        commits = commits.sort((a, b) => a.date < b.date)
         
         const firstCommit = commits[0]
         promises.push(new Promise(async function(resolve, reject) {
