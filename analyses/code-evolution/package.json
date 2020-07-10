@@ -1,0 +1,26 @@
+{
+  "name": "code-evolution",
+  "version": "0.0.0",
+  "description": "Visualize source growth over time",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "nodemon test.js rmccue test-repository --serve",
+    "test": "node test.js pichsenmeister wienerscript"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "seeance-analysis-core": "^0.0.19",
+    "rimraf": "^3.0.2",
+    "simple-git": "^2.8.0"
+  },
+  "seeance": {
+    "depends_on": [
+      "commits"
+    ],
+    "config_schema": {},
+    "type": "analysis"
+  }
+}
