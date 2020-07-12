@@ -30,10 +30,17 @@ module.exports = async function (localPath, token = undefined) {
                 const commit = c
                 try {
                     let diffs = await git.diff([p.hash, hash])
-                    commit.diffs = diffParse(diffs)
-                    commit.additions = commit.diffs.reduce((a, diff) => a + diff.additions, 0)
-                    commit.deletions = commit.diffs.reduce((a, diff) => a + diff.deletions, 0)
-                    commit.filesChanged = commit.diffs.map(d => d.to)
+                    try {
+                        commit.diffs = diffParse(diffs)
+                        commit.additions = commit.diffs.reduce((a, diff) => a + diff.additions, 0)
+                        commit.deletions = commit.diffs.reduce((a, diff) => a + diff.deletions, 0)
+                        commit.filesChanged = commit.diffs.map(d => d.to)
+                    } catch(e) {
+                        commit.diffs = undefined
+                        commit.additions = 0
+                        commit.deletions = 0
+                        commit.filesChanged = 0
+                    }
                     resolve(commit)
                 } catch(e) {
                     console.error(e)
