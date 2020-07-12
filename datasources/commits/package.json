@@ -4,7 +4,7 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test.js https://github.com/pichsenmeister/wienerscript"
+    "test": "node test.js https://github.com/esolneman/oop-helper-handout-plugin"
   },
   "keywords": [],
   "author": "",
