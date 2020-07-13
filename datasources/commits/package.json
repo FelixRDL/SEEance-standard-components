@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parse-diff": "^0.7.0",
     "rimraf": "^3.0.2",
     "simple-git": "^2.8.0"
   },
