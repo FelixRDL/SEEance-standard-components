@@ -16,7 +16,7 @@ module.exports = async function (localPath, token = undefined) {
                 curr.filesChanged = []
             }
             return curr
-        })
+        }).sort((a,b) => a.date>=b.date ? 1 : -1)
         resolve(commits)
     })
 }
