@@ -1,0 +1,21 @@
+{
+  "name": "blame",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test.js https://github.com/esolneman/OOP-Helper-Handout-Plugin"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rimraf": "^3.0.2",
+    "simple-git": "^2.8.0"
+  },
+  "seeance": {
+    "depends_on": [],
+    "type": "datasource.git",
+    "ttl": 3600
+  }
+}
