@@ -21,7 +21,7 @@ module.exports = async function (input, config, visualisation) {
         y: commitsForFiles[fileName].length
       }
     }).sort((a,b) => a.y >= b.y ? 1 : -1 )
-    if(config.max_number_of_results && config.max_number_of_results < result.length)
+    if(config['max_number_of_results'] && config.max_number_of_results < result.length)
       result = result.splice(-config.max_number_of_results)
 
     resolve(visualisation.plot([
