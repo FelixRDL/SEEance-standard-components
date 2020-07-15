@@ -1,0 +1,22 @@
+{
+  "name": "files",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test.js https://github.com/bitcoin-abc/bitcoin-abc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rimraf": "^3.0.2",
+    "simple-git": "^2.8.0",
+    "seeance-analysis-core": "^0.2.4"
+  },
+  "seeance": {
+    "depends_on": [],
+    "type": "datasource.git",
+    "ttl": 3600
+  }
+}
