@@ -7,7 +7,7 @@ module.exports = async function (localPath, token = undefined) {
       return l.startsWith('author ')
     })
     const authors = authorLines.map(l => l.split('author ')[1])
-    const linesPerAuthor = authorLines.reduce((acc, l) => {
+    const linesPerAuthor = authors.reduce((acc, l) => {
       if(!acc[l]) {
         acc[l] = 0
       }
