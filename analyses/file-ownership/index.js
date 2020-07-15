@@ -27,7 +27,7 @@ module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
     resolve(visualisation.plot(
         result, {
-      title: "Project Evolution in LOC",
+      title: "Ownership By File",
             barmode: "stack"
     }));
   })
