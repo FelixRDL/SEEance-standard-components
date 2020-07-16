@@ -24,9 +24,29 @@
     ],
     "config_schema": {
       "time_frame": {
-          "type": "string",
-          "enum": ["hour", "day", "week", "month", "year"]
-    }},
+        "type": "string",
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month",
+          "year"
+        ]
+      },
+      "select_shiz": {
+        "type": "select",
+        "titleMap": [
+          {
+            "value": "yes",
+            "name": "Yes I do"
+          },
+          {
+            "value": "no",
+            "name": "Hell no"
+          }
+        ]
+      }
+    },
     "type": "analysis",
     "category": "Collaboration"
   }

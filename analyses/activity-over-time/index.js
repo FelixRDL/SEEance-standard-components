@@ -20,7 +20,7 @@ module.exports = async function (input, config, visualisation) {
     }
     while(startDate.isBefore(moment(dateTo))) {
       startDate.add(7,'days');
-      weeks.push(`${startDate.year()}-${startDate.week()}`)
+      weeks.push(`${startDate.year()}-W${startDate.week()}`)
     }
     return weeks
   }
@@ -48,23 +48,31 @@ module.exports = async function (input, config, visualisation) {
       const commitsByTime = lodash.groupBy(commitsByAuthor[author], c => {
         if(timeFrame === 'week') {
           // Solution by YouneL, https://stackoverflow.com/questions/48083728/group-dates-by-week-javascript
-          return `${moment(c.date).year()}-${moment(c.date).week()}`;
+          return `${moment(c.date).year()}-W${moment(c.date).week()}`;
         } else {
           return moment(c.date).format(format)
         }
       })
       xs = timeFrame!=='week' ?  Object.keys(commitsByTime).sort((a,b) => a>=b ? 1:-1) : weeks
-      console.log(xs.map(k => commitsByTime[k] ? commitsByTime[k].length : 0))
       return {
         x: xs,
         y: xs.map(k => commitsByTime[k] ? commitsByTime[k].length : 0),
         type: 'bar',
-        name: `Commits by author ${author}`
+        name: `Commits by ${author}`
       }
     })
-
     resolve(visualisation.plot(authorPlots, {
-      title: "Project Evolution in LOC"
+      title: "Activity Over Time",
+      xaxis: {
+        title: {
+          text: `Time in ${timeFrame}s`
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Number of commits'
+        }
+      }
     }));
   })
 }
