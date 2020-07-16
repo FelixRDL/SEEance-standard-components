@@ -9,11 +9,11 @@ module.exports = async function (localPath, token = undefined) {
             if(c.diff) {
                 curr.additions = c.diff.insertions
                 curr.deletions = c.diff.deletions
-                curr.filesChanged = c.diff.changed
+                curr.filesChanged = c.diff.files
             } else {
                 curr.additions = 0
                 curr.deletions = 0
-                curr.filesChanged = 0
+                curr.filesChanged = []
             }
             return curr
         }).sort((a,b) => a.date>=b.date ? 1 : -1)
