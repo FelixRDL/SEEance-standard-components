@@ -24,11 +24,9 @@
     ],
     "config_schema": {
       "time_frame": {
-        "type": "array",
-        "items": {
           "type": "string",
-          "enum": ["hour", "day", "week", "month", "year"]
-        }
+          "enum": ["hour", "day", "week", "month", "year"],
+          "default": "day"
     }},
     "type": "analysis",
     "category": "Collaboration"
