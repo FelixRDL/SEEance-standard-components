@@ -7,6 +7,7 @@ module.exports = async function (input, config) {
         const mean = sortedCommits.reduce((a,b) => a+b.additions+b.deletions, 0)/n;
         const sd = Math.sqrt(sortedCommits.map(x => Math.pow(x.additions+x.deletions-mean,2)).reduce((a,b) => a+b)/n);
         sortedCommits = sortedCommits.filter(c => Math.abs((c.additions + c.deletions)-mean) <= sd*outlierFactor)
-        resolve(sortedCommits)
+        input.commits = sortedCommits
+        resolve(input)
     })
 }
