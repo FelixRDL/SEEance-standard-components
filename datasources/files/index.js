@@ -5,11 +5,11 @@ module.exports = async function (localPath, token = undefined) {
   return new Promise(async(resolve, reject) => {
     const git = simpleGit(localPath);
     let r = (await git.raw(['ls-files'])).split("\n")
-    const promises = r.map(async (f) => {
-      return {
+    const promises = r.map((f) => {
+      return Promise.resolve({
         file: f,
         stats: fs.statSync(localPath+'/'+f)
-      };
+      })
     })
     const sizes = await Promise.all(promises)
     resolve(sizes)

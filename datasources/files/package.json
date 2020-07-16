@@ -4,7 +4,7 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test.js https://github.com/bitcoin-abc/bitcoin-abc"
+    "test": "node test.js https://github.com/uniregensburg/ASE_WS1718-notenverwaltung"
   },
   "keywords": [],
   "author": "",
