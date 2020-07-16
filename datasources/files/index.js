@@ -8,7 +8,7 @@ module.exports = async function (localPath, token = undefined) {
     const promises = r.map((f) => {
       return Promise.resolve({
         file: f,
-        stats: fs.statSync(localPath+'/'+f)
+        stats: fs.statSync(__dirname + '/' + localPath+'/'+f)
       })
     })
     const sizes = await Promise.all(promises)
