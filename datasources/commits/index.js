@@ -13,7 +13,7 @@ module.exports = async function (localPath, token = undefined) {
             } else {
                 curr.additions = 0
                 curr.deletions = 0
-                curr.filesChanged = []
+                curr.filesChanged = 0
             }
             return curr
         }).sort((a,b) => a.date>=b.date ? 1 : -1)
