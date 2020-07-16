@@ -32,19 +32,6 @@
           "month",
           "year"
         ]
-      },
-      "select_shiz": {
-        "type": "select",
-        "titleMap": [
-          {
-            "value": "yes",
-            "name": "Yes I do"
-          },
-          {
-            "value": "no",
-            "name": "Hell no"
-          }
-        ]
       }
     },
     "type": "analysis",
