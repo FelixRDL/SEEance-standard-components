@@ -15,7 +15,7 @@ module.exports = async function (input, config, visualisation) {
     let xs = numFiles.map((n, i) => i)
 
 
-    if(config['normalize'] && config['normalize'] == true) {
+    if(config && config['normalize'] && config['normalize'] == true) {
       numFiles = normalize(numFiles)
       additions = normalize(additions)
       deletions = normalize(deletions)
