@@ -19,6 +19,7 @@
   "seeance": {
     "depends_on": ["files"],
     "config_schema": {},
-    "type": "analysis"
+    "type": "analysis",
+    "category": "Project Statistics"
   }
 }

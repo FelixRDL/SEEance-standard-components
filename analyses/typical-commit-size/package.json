@@ -26,6 +26,7 @@
         "default": true
       }
     },
-    "type": "analysis"
+    "type": "analysis",
+    "category": "Coding Behavior"
   }
 }

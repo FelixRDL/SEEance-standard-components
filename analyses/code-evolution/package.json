@@ -21,6 +21,7 @@
       "commits"
     ],
     "config_schema": {},
-    "type": "analysis"
+    "type": "analysis",
+    "category": "Code Evolution"
   }
 }

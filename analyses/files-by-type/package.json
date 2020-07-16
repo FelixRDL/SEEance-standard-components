@@ -25,6 +25,7 @@
         "default": null
       }
     },
-    "type": "analysis"
+    "type": "analysis",
+    "category": "Project Statistics"
   }
 }
