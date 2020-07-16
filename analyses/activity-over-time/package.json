@@ -1,0 +1,33 @@
+{
+  "name": "activity-over-time",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "nodemon test.js UniRegensburg Stoerungsmeldung --serve",
+    "test": "node test.js UniRegensburg Stoerungsmeldung"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.19",
+    "momentjs": "^2.0.0",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "seeance-analysis-core": "^0.0.19",
+    "simple-git": "^2.8.0"
+  },
+  "seeance": {
+    "depends_on": [
+      "commits"
+    ],
+    "config_schema": {
+      "time_frame": {
+      "type": "string",
+      "default": "day"
+    }},
+    "type": "analysis",
+    "category": "Collaboration"
+  }
+}
