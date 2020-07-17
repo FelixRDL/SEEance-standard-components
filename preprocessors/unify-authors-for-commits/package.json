@@ -4,8 +4,8 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js esolneman OOP-Helper-Handout-Plugin",
-    "test": "nodemon test.js esolneman OOP-Helper-Handout-Plugin"
+    "dev": "nodemon test.js uniregensburg ASE_WS1718-sprechstundenverwaltung",
+    "test": "nodemon test.js uniregensburg ASE_WS1718-sprechstundenverwaltung"
   },
   "keywords": [],
   "author": "",
@@ -22,11 +22,8 @@
     ],
     "produces": [],
     "config_schema": {
-      "mapping": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
+      "mappings": {
+        "type": "string"
       }
     },
     "type": "preprocessor"
