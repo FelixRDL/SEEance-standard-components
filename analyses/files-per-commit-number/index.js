@@ -1,9 +1,9 @@
 module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
     const commitsForFiles = input.commits.reduce((acc, commit) => {
-      if(!commit.diff)
+      if(!commit.filesChanged)
         return acc
-      const files = commit.diff.files;
+      const files = commit.filesChanged;
       const result = acc;
       files.forEach((file) => {
         if(!result[file.file]) {
