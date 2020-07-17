@@ -18,7 +18,12 @@
   },
   "seeance": {
     "depends_on": ["blame"],
-    "config_schema": {},
+    "config_schema": {
+      "normalize": {
+        "type": "boolean",
+        "default": true
+      }
+    },
     "type": "analysis",
     "category": "Ownership"
   }
