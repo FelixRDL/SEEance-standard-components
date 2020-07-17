@@ -10,21 +10,17 @@ runTest().then(() => {
 
 async function runTest () {
   const cp = await ComponentProvider({
-    customRepositories: []
+    customRepositories: [],
+    reloadOnly: false
   })
-  const sourcesNames = preprocessorPkg['seeance']['depends_on']
   await cp.init()
-  const datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)))
+  const datasources = await Promise.all(['commits'].map((n) => cp.getDatasourceByName(n)))
   return core.analyze(process.argv[2], process.argv[3], datasources, [{
     pkg: preprocessorPkg,
     module: preprocessor,
-    config: {
-      upperCutoff: 10,
-      lowerCutoff: 0
-    }
+    config: preprocessorPkg.seeance
   }], {
-    config: {
-    },
+    config: {},
     module: async (i, c, v) => {
       console.log('TEST: PRINT RESULT')
       console.log(i)

@@ -1,31 +1,32 @@
 {
-  "name": "remove-outlier-files",
+  "name": "unify-authors-for-commits",
   "version": "0.0.0",
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js uniregensburg ASE_WS1718-notenverwaltung",
-    "test": "node test.js niregensburg ASE_WS1718-notenverwaltung"
+    "dev": "nodemon test.js esolneman OOP-Helper-Handout-Plugin",
+    "test": "nodemon test.js esolneman OOP-Helper-Handout-Plugin"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "nodemon": "^2.0.4",
-    "numbers": "^0.7.0",
+    "seeance-analysis-core": "^0.2.9",
     "rimraf": "^3.0.2",
-    "seeance-analysis-core": "^0.0.20",
     "simple-git": "^2.8.0"
   },
   "seeance": {
     "depends_on": [
-      "files"
+      "commits"
     ],
     "produces": [],
     "config_schema": {
-      "factor": {
-        "type": "number",
-        "default": 3
+      "mapping": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     },
     "type": "preprocessor"
