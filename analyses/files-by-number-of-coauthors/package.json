@@ -4,8 +4,8 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js bitcoin-abc bitcoin-abc --serve",
-    "test": "node test.js bitcoin-abc bitcoin-abc"
+    "dev": "nodemon test.js esolneman OOP-Helper-Handout-Plugin --serve",
+    "test": "node test.js esolneman OOP-Helper-Handout-Plugin"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,9 @@
     "simple-git": "^2.8.0"
   },
   "seeance": {
-    "depends_on": ["commits"],
+    "depends_on": [
+      "commits"
+    ],
     "config_schema": {
       "max_number_of_results": {
         "type": "number",

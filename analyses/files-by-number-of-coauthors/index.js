@@ -3,9 +3,9 @@ module.exports = async function (input, config, visualisation) {
     const commits = input.commits;
     const filesWithCoauthors = commits.reduce((acc, commit) => {
       const result = acc;
-      if(!commit.diff)
+      if(!commit.filesChanged)
         return result;
-      const files = commit.diff.files
+      const files = commit.filesChanged
       files.forEach(fileChange => {
         if(!acc[fileChange.file])
           acc[fileChange.file] = new Set()
@@ -22,7 +22,6 @@ module.exports = async function (input, config, visualisation) {
     }).sort((a, b) => a.y >= b.y ? 1 : -1)
 
     if(config && config.max_number_of_results && config.max_number_of_results < results.length) {
-      console.log("SPLICE")
       results = results.splice(-config.max_number_of_results)
     }
 
