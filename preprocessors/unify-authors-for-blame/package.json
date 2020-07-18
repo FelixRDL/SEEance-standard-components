@@ -22,7 +22,6 @@
     ],
     "produces": [],
     "config_schema": {
-{
    "mappings":{
       "type":"array",
       "description":"Author Aliases",
@@ -55,8 +54,7 @@
 }
    
 }
-}
-    },
+},
     "type": "preprocessor"
   }
 }
