@@ -21,7 +21,7 @@ module.exports = async function (input, config, visualisation) {
         name: 'Code Survival Rate Per Autor'
       }
     ], {
-      title: "Project Evolution in LOC"
+      title: "Code Survival Rate"
     }));
   })
 }

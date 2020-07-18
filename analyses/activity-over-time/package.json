@@ -1,7 +1,7 @@
 {
   "name": "activity-over-time",
   "version": "0.0.0",
-  "description": "TODO: add your description here!",
+  "description": "Activity Over Time",
   "main": "lib/index.js",
   "scripts": {
     "dev": "nodemon test.js UniRegensburg Stoerungsmeldung --serve",
