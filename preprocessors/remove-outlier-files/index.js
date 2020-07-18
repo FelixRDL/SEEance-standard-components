@@ -1,19 +1,11 @@
-const mean = require('numbers').statistic.mean, sd = require('numbers').statistic.standardDev
+const mean = require('numbers').statistic.mean; const sd = require('numbers').statistic.standardDev
 
 module.exports = async function (input, config) {
-  console.log(input.files)
-  const sizes = input.files.map(f => f.stats.size)
-  console.log(sizes)
-  const myMean = mean(sizes)
-  const mySd = sd(sizes)
+  const sizeByFile = input.files.map(f => f.stats.size)
+  const myMean = mean(sizeByFile)
+  const mySd = sd(sizeByFile)
   const cutoffFactor = config && config.factor ? config.factor : 3
-  const newFiles = []
-  sizes.map((f, i) => {
-    if(Math.abs(f-myMean) < mySd * cutoffFactor) {
-      newFiles.push(input.files[i])
-    }
-  })
-  input.files = newFiles
+  input.files = input.files.filter(f => Math.abs(f.stats.size - myMean) < mySd * cutoffFactor)
   return new Promise((resolve, reject) => {
     resolve(input)
   })
