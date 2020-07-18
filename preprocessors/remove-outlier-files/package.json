@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "nodemon test.js uniregensburg ASE_WS1718-notenverwaltung",
-    "test": "node test.js niregensburg ASE_WS1718-notenverwaltung"
+    "test": "node test.js uniregensburg ASE_WS1718-notenverwaltung"
   },
   "keywords": [],
   "author": "",
@@ -21,13 +21,15 @@
     "depends_on": [
       "files"
     ],
-    "produces": [],
+    "produces": [
+      "files"
+    ],
     "config_schema": {
       "factor": {
         "type": "number",
         "default": 3
       }
-    },
-    "type": "preprocessor"
-  }
+    }
+  },
+  "type": "preprocessor"
 }

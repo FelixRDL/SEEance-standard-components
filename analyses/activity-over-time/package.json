@@ -25,13 +25,41 @@
     "config_schema": {
       "time_frame": {
         "type": "string",
-        "enum": [
-          "hour",
-          "day",
-          "week",
-          "month",
-          "year"
-        ]
+        "description": "Group activities by:",
+        "widget": "radio",
+          "oneOf": [
+          {
+            "description": "Hour",
+            "enum": [
+              "hour"
+            ]
+          },
+          {
+            "description": "Day",
+            "enum": [
+              "day"
+            ]
+          },
+          {
+            "description": "Week",
+            "enum": [
+              "week"
+            ]
+          },
+          {
+            "description": "Month",
+            "enum": [
+              "month"
+            ]
+          },
+           {
+            "description": "Year",
+            "enum": [
+              "year"
+            ]
+          }
+        ],
+        "default": "week"
       }
     },
     "type": "analysis",

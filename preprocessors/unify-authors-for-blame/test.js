@@ -14,27 +14,18 @@ async function runTest () {
     reloadOnly: true
   })
   await cp.init()
-  const datasources = await Promise.all(['commits'].map((n) => cp.getDatasourceByName(n)))
+  const datasources = await Promise.all(['blame'].map((n) => cp.getDatasourceByName(n)))
   return core.analyze(process.argv[2], process.argv[3], datasources, [{
     package: preprocessorPkg,
     module: preprocessor,
     config: {
-      mappings: [{
-        properName: 'Johannes',
-        aliases: 'unknown;Unknown'
-      }, {
-        properName: 'Paul',
-        aliases: 'PWinderl'
-      }, {
-        properName: 'Felix',
-        aliases: 'Felix Riedl'
-      }]
+      mappings: 'unknown:Johannes Dengler;Unknown:Johannes Dengler;PWinderl:Paul Winderl;FelixRDL:Felix Riedl'
     }
   }], {
     config: {},
     module: async (i, c, v) => {
       console.log('TEST: PRINT RESULT')
-      console.log(i)
+      console.log(JSON.stringify(i))
       return Promise.resolve('success')
     },
     package: {

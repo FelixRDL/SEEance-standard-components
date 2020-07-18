@@ -4,18 +4,22 @@ module.exports = async function (input, config) {
     const mappingDictEMails = {}
     function initializeDict (commits) {
       if (config && config.mappings) {
-        const mappings = config.mappings.split(';')
-        mappings.forEach(m => {
-          const fromKey = m.split(':')[0]
-          const toKey = m.split(':')[1]
-          const entriesWithToKey = commits.filter(c => c.author_name === toKey)
-          if (entriesWithToKey.length > 0) {
-            const entry = entriesWithToKey[0]
-            mappingDictNames[fromKey] = entry.author_name
-            mappingDictEMails[fromKey] = entry.author_email
-          } else {
-            mappingDictNames[fromKey] = toKey
+        config.mappings.map(mapping => {
+          const properName = mapping.properName
+          const aliases = mapping.aliases.split(';')
+          const entriesForProperName = commits.filter(c => c.author_name === properName)
+          let entry
+          if (entriesForProperName.length > 0) {
+            entry = entriesForProperName[0]
           }
+          aliases.map(alias => {
+            if (entry) {
+              mappingDictNames[alias] = entry.author_name
+              mappingDictEMails[alias] = entry.author_email
+            } else {
+              mappingDictNames[alias] = properName
+            }
+          })
         })
       }
     }
