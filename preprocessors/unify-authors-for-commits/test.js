@@ -19,7 +19,16 @@ async function runTest () {
     package: preprocessorPkg,
     module: preprocessor,
     config: {
-      mappings: 'unknown:Johannes Dengler;Unknown:Johannes Dengler;PWinderl:Paul Winderl;FelixRDL:Felix Riedl'
+      mappings: [{
+        properName: 'Johannes',
+        aliases: 'unknown;Unknown'
+      }, {
+        properName: 'Paul',
+        aliases: 'PWinderl'
+      }, {
+        properName: 'Felix',
+        aliases: 'Felix Riedl'
+      }]
     }
   }], {
     config: {},
