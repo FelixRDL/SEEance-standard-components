@@ -29,10 +29,8 @@
          {
             "properName":"John Doe",
             "aliases":"JohnDoe92;JoeyDoey"
-         
-}
-      
-],
+         }
+      ],
       "items":{
          "type":"object",
          "properties":{
@@ -40,20 +38,15 @@
                "type":"string",
                "default":"John Doe",
                "description":"Proper Author Name"
-            
-},
+            },
             "aliases":{
                "type":"string",
                "default":"JohnDoe92;JoeyDoey;JDuh",
                "description":"Aliases to Replace (Separated by \";\" char)"
-            
-}
-         
-}
-      
-}
-   
-}
+            }
+         }
+      }
+   }
 },
     "type": "preprocessor"
   }
