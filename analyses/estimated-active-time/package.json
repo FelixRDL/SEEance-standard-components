@@ -29,7 +29,10 @@
       "estimatedFirstCommitTime": {
         "type": "number",
         "default": 3
-      }
+      },
+      "ignorePreprocessors": [
+        "remove-outlier-commits"
+      ]
     },
     "type": "analysis"
   }

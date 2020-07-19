@@ -27,6 +27,8 @@
       }
     },
     "type": "analysis",
-    "category": "Coding Behavior"
+    "category": "Coding Behavior",
+    "ignorePreprocessors": [
+    ]
   }
 }

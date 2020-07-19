@@ -19,6 +19,10 @@
   "seeance": {
     "depends_on": ["commits", "blame"],
     "config_schema": {},
+    "ignorePreprocessors": [
+      "remove-outlier-commits",
+      "remove-outlier-blame"
+    ],
     "type": "analysis"
   }
 }

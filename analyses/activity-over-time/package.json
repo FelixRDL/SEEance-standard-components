@@ -22,6 +22,9 @@
     "depends_on": [
       "commits"
     ],
+    "ignorePreprocessors": [
+      "remove-outlier-commits"
+    ],
     "config_schema": {
       "time_frame": {
         "type": "string",

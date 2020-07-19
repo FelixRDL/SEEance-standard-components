@@ -19,6 +19,8 @@
   "seeance": {
     "depends_on": ["blame"],
     "config_schema": {},
-    "type": "analysis"
+    "type": "analysis",
+    "ignorePreprocessors": [
+    ]
   }
 }

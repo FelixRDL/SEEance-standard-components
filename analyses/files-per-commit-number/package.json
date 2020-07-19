@@ -27,6 +27,9 @@
       }
     },
     "type": "analysis",
-    "category": "Project Statistics"
+    "category": "Project Statistics",
+    "ignorePreprocessors": [
+      "remove-outlier-commits"
+    ]
   }
 }

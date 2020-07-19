@@ -25,6 +25,8 @@
       }
     },
     "type": "analysis",
-    "category": "Collaboration"
+    "category": "Collaboration",
+    "ignorePreprocessors": [
+    ]
   }
 }

@@ -47,6 +47,8 @@
         "description": "Show Effort"
       }
     },
-    "type": "analysis"
+    "type": "analysis",
+    "ignorePreprocessors": [
+    ]
   }
 }
