@@ -16,17 +16,17 @@
     "simple-git": "^2.8.0"
   },
   "seeance": {
-    "depends_on": ["issues"],
+    "depends_on": [
+      "issues"
+    ],
     "config_schema": {
       "min_contributions": {
-        "default": "The minimum number of contributions necessary to appear in this visualisation.",
-        "type": "number",
-        "default": "1"
+        "default": "1",
+        "type": "number"
       }
     },
     "type": "analysis",
     "category": "Collaboration",
-    "ignorePreprocessors": [
-    ]
+    "ignorePreprocessors": []
   }
 }
