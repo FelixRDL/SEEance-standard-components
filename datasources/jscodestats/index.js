@@ -14,17 +14,15 @@ module.exports = async function (localPath, token = undefined) {
   }
 
   return new Promise((resolve, reject) => {
-    glob(localPath + '/**/*.js', {}, (err, files)=>{
-      const fileMap = files.map(f => {
+    glob(localPath + '/**/*.js', {}, async (err, files) => {
+      const code = await Promise.all((files.map(file => fs.promises.readFile(file, 'utf-8'))))
+      const fileMap = files.map((file, i) => {
         return {
-          path: f,
-          code: trimShebang(fs.readFileSync(f, 'utf-8'))
+          path: file,
+          code: trimShebang(code[i])
         }
       })
-
       const result = esc.analyse(fileMap, {})
-      result.reports.map((d) => console.log(d.functions))
-
       resolve(result.reports)
     })
   })
