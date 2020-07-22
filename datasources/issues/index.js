@@ -10,11 +10,11 @@ module.exports = async (owner, repo, token=undefined) => {
             octo = new Octokit();
         }
         try {
-            const issues = await octo.paginate(octo.issues.listForRepo, {
+            const issues = (await octo.paginate(octo.issues.listForRepo, {
                 owner: owner,
                 repo: repo,
                 state: 'all'
-            });
+            })).filter(issue => !issue['pull_request']);
             resolve(issues);
         } catch (e) {
             reject(e);
