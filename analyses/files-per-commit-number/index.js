@@ -33,7 +33,17 @@ module.exports = async function (input, config, visualisation) {
         name: 'Commits for File'
       }
     ], {
-      title: "Files per Commit Number"
+      title: "Files per Commit Number",
+      xaxis: {
+        title: {
+          text: `Filename`
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Number of commits'
+        }
+      }
     }));
   })
 }

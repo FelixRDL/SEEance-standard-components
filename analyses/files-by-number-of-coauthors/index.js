@@ -33,7 +33,17 @@ module.exports = async function (input, config, visualisation) {
         name: 'Number of Commiters'
       }
     ], {
-      title: "Number of Distinct Commiters per File"
+      title: "Number of Distinct Authors per File",
+      xaxis: {
+        title: {
+          text: `Filename`
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Number of distinct authors'
+        }
+      }
     }));
   })
 }

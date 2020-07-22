@@ -49,7 +49,17 @@ module.exports = async function (input, config, visualisation) {
         name: 'Avg. Per-Function Halstead Effort'
       })
     resolve(visualisation.plot(plots, {
-      title: "JS Code Metrics"
+      title: "JS Code Metrics",
+      xaxis: {
+        title: {
+          text: `Filename`
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Metrics values'
+        }
+      }
     }));
   })
 }

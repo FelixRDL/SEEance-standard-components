@@ -8,10 +8,20 @@ module.exports = async function (input, config, visualisation) {
         x: xs,
         y: ys,
         type: 'bar',
-        name: 'Changed Files per Commit'
+        name: 'File sizes'
       }
     ], {
-      title: "File sizes in Project"
+      title: "File sizes in Project",
+      xaxis: {
+        title: {
+          text: `Filename`
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'File size (Bytes)'
+        }
+      }
     }));
   })
 }

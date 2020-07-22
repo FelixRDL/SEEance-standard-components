@@ -20,6 +20,18 @@ module.exports =  async function(input, config, visualisation) {
                 type: "bar",
                 name: "Something"
             }
-        ], {}));
+        ], {
+            title: 'Number of Issues by Author',
+            xaxis: {
+                title: {
+                    text: `Author`
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Number of assigned issues'
+                }
+            }
+        }));
     });
 }

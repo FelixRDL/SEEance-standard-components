@@ -53,7 +53,17 @@ module.exports = async function (input, config, visualisation) {
                 name: 'Time Invested By Author (in hours)'
             }
         ], {
-            title: "Estimated Hours Spent Programming"
+            title: "Estimated Hours Spent Programming",
+            xaxis: {
+                title: {
+                    text: `Author`
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Estimated hours spent programming'
+                }
+            }
         }));
     })
 }

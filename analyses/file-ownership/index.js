@@ -27,8 +27,18 @@ module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
     resolve(visualisation.plot(
         result, {
-      title: "Ownership By File",
-            barmode: "stack"
+            title: "Ownership By File",
+            barmode: "stack",
+            xaxis: {
+                title: {
+                    text: `Filename`
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Lines created by author'
+                }
+            }
     }));
   })
 }
