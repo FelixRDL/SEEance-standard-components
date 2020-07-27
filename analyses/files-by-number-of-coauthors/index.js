@@ -1,36 +1,24 @@
 module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
     const commits = input.commits
-    const filesWithCoauthors = commits.reduce((acc, commit) => {
-      const result = acc
-      if (!commit.filesChanged) { return result }
-      const files = commit.filesChanged
-      files.forEach(fileChange => {
-        if (!acc[fileChange.file]) { acc[fileChange.file] = new Set() }
-        result[fileChange.file].add(commit.author_name)
-      })
-      return result
+    const authorContribs = commits.reduce((acc, commit) => {
+      const author = commit.author_name
+      if (!acc[author]) { acc[author] = new Set() }
+      commit.filesChanged.forEach(fileChanged => acc[author].add(fileChanged.file))
+      return acc
     }, {})
-    let results = Object.keys(filesWithCoauthors).map((f) => {
+    const authors = Object.keys(authorContribs).sort((a,b) => a <= b ? -1 : 1)
+    const plots = authors.map((a) => {
       return {
-        x: f,
-        y: filesWithCoauthors[f].size,
-        authors: filesWithCoauthors[f]
-      }
-    }).sort((a, b) => a.y >= b.y ? 1 : -1)
-
-    if (config && config.max_number_of_results && config.max_number_of_results < results.length) {
-      results = results.splice(-config.max_number_of_results)
-    }
-
-    resolve(visualisation.plot([
-      {
-        x: results.map(r => r.x),
-        y: results.map(r => r.y),
+        x: Array.from(authorContribs[a]),
+        y: Array.from(authorContribs[a]).map(c => 1),
         type: 'bar',
-        name: 'Number of Commiters'
+        name: a
       }
-    ], {
+    })
+
+    resolve(visualisation.plot(plots, {
+      barmode: 'stack',
       title: 'Number of Distinct Authors per File',
       xaxis: {
         title: {
