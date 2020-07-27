@@ -17,11 +17,33 @@
     "simple-git": "^2.8.0"
   },
   "seeance": {
-    "depends_on": ["files"],
-    "config_schema": {},
+    "depends_on": [
+      "files"
+    ],
+    "config_schema": {
+      "dimension": {
+        "type": "string",
+        "description": "Visualize sizes in",
+        "widget": "radio",
+        "oneOf": [
+          {
+            "description": "Bytes",
+            "enum": [
+              "bytes"
+            ]
+          },
+          {
+            "description": "Lines",
+            "enum": [
+              "lines"
+            ]
+          }
+        ],
+        "default": "lines"
+      }
+    },
     "type": "analysis",
     "category": "Project Statistics"
   },
-  "ignorePreprocessors": [
-  ]
+  "ignorePreprocessors": []
 }
