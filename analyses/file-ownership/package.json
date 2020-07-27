@@ -21,11 +21,6 @@
       "blame"
     ],
     "config_schema": {
-      "normalize": {
-        "type": "boolean",
-        "description": "Normalize",
-        "default": true
-      }
     },
     "type": "analysis",
     "category": "Ownership",
