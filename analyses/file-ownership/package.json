@@ -17,16 +17,18 @@
     "simple-git": "^2.8.0"
   },
   "seeance": {
-    "depends_on": ["blame"],
+    "depends_on": [
+      "blame"
+    ],
     "config_schema": {
       "normalize": {
         "type": "boolean",
+        "description": "Normalize",
         "default": true
       }
     },
     "type": "analysis",
     "category": "Ownership",
-    "ignorePreprocessors": [
-    ]
+    "ignorePreprocessors": []
   }
 }
