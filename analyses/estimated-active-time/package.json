@@ -24,10 +24,12 @@
     "config_schema": {
       "maxInteval": {
         "type": "number",
+        "description": "Maximum Interval between commits in work session",
         "default": 60
       },
       "estimatedFirstCommitTime": {
         "type": "number",
+        "description": "Estimated time for first commit",
         "default": 3
       }
     },
