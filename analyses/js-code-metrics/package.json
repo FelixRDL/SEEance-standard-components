@@ -1,0 +1,54 @@
+{
+  "name": "js-code-metrics",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "nodemon test.js felixrdl seeance-analysis-core --serve",
+    "test": "node test.js UniRegensburg ASE_WS1718-notenverwaltung"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "seeance-analysis-core": "^0.0.19",
+    "rimraf": "^3.0.2",
+    "simple-git": "^2.8.0"
+  },
+  "seeance": {
+    "depends_on": [
+      "jscodestats"
+    ],
+    "config_schema": {
+      "loc": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show LOC"
+      },
+      "maintainability": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show Maintainability Index"
+      },
+      "numDependencies": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show Number Of Dependencies"
+      },
+      "cyclomatic": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show Cyclomatic Complexity"
+      },
+      "effort": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show Effort"
+      }
+    },
+    "type": "analysis",
+    "ignorePreprocessors": [
+    ]
+  }
+}

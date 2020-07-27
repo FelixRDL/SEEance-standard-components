@@ -20,6 +20,8 @@
     "depends_on": [
       "commits"
     ],
+    "ignorePreprocessors": [
+    ],
     "config_schema": {},
     "type": "analysis",
     "category": "Code Evolution"

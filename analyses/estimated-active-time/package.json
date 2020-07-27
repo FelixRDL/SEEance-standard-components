@@ -1,33 +1,39 @@
 {
-  "name": "files-by-type",
+  "name": "estimated-active-time",
   "version": "0.0.0",
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js bitcoin-abc bitcoin-abc --serve",
-    "test": "node test.js bitcoin-abc bitcoin-abc"
+    "dev": "nodemon test.js esolneman OOP-Helper-Handout-Plugin --serve",
+    "test": "node test.js esolneman OOP-Helper-Handout-Plugin"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
     "seeance-analysis-core": "^0.0.19",
     "simple-git": "^2.8.0"
   },
   "seeance": {
-    "depends_on": ["files"],
+    "depends_on": [
+      "commits"
+    ],
     "config_schema": {
-      "max_number_of_results": {
+      "maxInteval": {
         "type": "number",
-        "default": null
+        "default": 60
+      },
+      "estimatedFirstCommitTime": {
+        "type": "number",
+        "default": 3
       }
     },
     "type": "analysis",
-    "category": "Project Statistics",
     "ignorePreprocessors": [
+      "remove-outlier-commits"
     ]
   }
 }

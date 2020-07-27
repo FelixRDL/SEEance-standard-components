@@ -1,7 +1,7 @@
 {
   "name": "activity-over-time",
   "version": "0.0.0",
-  "description": "TODO: add your description here!",
+  "description": "Activity Over Time",
   "main": "lib/index.js",
   "scripts": {
     "dev": "nodemon test.js UniRegensburg Stoerungsmeldung --serve",
@@ -21,6 +21,9 @@
   "seeance": {
     "depends_on": [
       "commits"
+    ],
+    "ignorePreprocessors": [
+      "remove-outlier-commits"
     ],
     "config_schema": {
       "start_date": {

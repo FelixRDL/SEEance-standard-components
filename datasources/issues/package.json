@@ -4,7 +4,7 @@
   "description": "This datasource fetches all issues registered for a repository.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node ./test rmccue test-repository"
+    "test": "node ./test UniRegensburg ASE_WS1718-sprechstundenverwaltung"
   },
   "keywords": [],
   "author": "",

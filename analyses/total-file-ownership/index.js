@@ -34,7 +34,17 @@ module.exports = async function (input, config, visualisation) {
         name: isNormalizing ? 'Line Ownership' : 'Proportionate Line Ownership'
       }
     ], {
-      title: "Line Ownership in current Project"
+      title: "Line Ownership in current Project",
+      xaxis: {
+        title: {
+          text: `Author`
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Number of created lines'
+        }
+      }
     }));
   })
 }

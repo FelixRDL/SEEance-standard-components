@@ -23,7 +23,17 @@ module.exports = async function (input, config, visualisation) {
                 name: 'Summed Additions'
             }
         ], {
-            title: "Project Evolution in LOC"
+            title: "Project Evolution in LOC",
+            xaxis: {
+                title: {
+                    text: `Time`
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Number of operations'
+                }
+            }
         }));
     })
 }

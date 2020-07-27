@@ -25,6 +25,8 @@
       }
     },
     "type": "analysis",
-    "category": "Ownership"
+    "category": "Ownership",
+    "ignorePreprocessors": [
+    ]
   }
 }

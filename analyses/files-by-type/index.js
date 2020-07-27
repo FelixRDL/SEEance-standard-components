@@ -27,7 +27,17 @@ module.exports = async function (input, config, visualisation) {
         name: 'Number of Files By Extension'
       }
     ], {
-      title: "Number of Files By Extension"
+      title: "Number of Files By Extension",
+      xaxis: {
+        title: {
+          text: `Extension Name`
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Number of files'
+        }
+      }
     }));
   })
 }

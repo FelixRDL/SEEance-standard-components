@@ -41,7 +41,12 @@ module.exports = async function (input, config, visualisation) {
         name: 'Deletions per Commit'
       }
     ], {
-      title: "Typical change size by commit"
+      title: "Typical change size by commit",
+      yaxis: {
+        title: {
+          text: 'Commit size'
+        }
+      }
     }));
   })
 }
