@@ -12,7 +12,7 @@ module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
     const commits = input.commits
       .sort((a, b) => a.date <= b.date ? -1 : 1)
-      .filter(c.date => filterTimeRange(c, config.start_date, config.end_date))
+      .filter(c => filterTimeRange(c.date, config.start_date, config.end_date))
     const diff = commits.map(c => { return c.additions - c.deletions })
     const xs = commits.map(c => c.date)
     const ys = diff.map((d, i) => diff.slice(0, i).reduce((a, b) => a + b, 0))
