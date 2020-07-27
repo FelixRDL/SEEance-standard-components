@@ -23,11 +23,17 @@
       "commits"
     ],
     "config_schema": {
+      "start_date": {
+        "type":"date"
+      },
+      "end_date": {
+        "type": "date"
+      },
       "time_frame": {
         "type": "string",
         "description": "Group activities by:",
         "widget": "radio",
-          "oneOf": [
+        "oneOf": [
           {
             "description": "Hour",
             "enum": [
@@ -52,7 +58,7 @@
               "month"
             ]
           },
-           {
+          {
             "description": "Year",
             "enum": [
               "year"
