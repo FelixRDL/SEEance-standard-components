@@ -1,17 +1,15 @@
 module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
-    const commits = input.commits;
+    const commits = input.commits
     const filesWithCoauthors = commits.reduce((acc, commit) => {
-      const result = acc;
-      if(!commit.filesChanged)
-        return result;
+      const result = acc
+      if (!commit.filesChanged) { return result }
       const files = commit.filesChanged
       files.forEach(fileChange => {
-        if(!acc[fileChange.file])
-          acc[fileChange.file] = new Set()
+        if (!acc[fileChange.file]) { acc[fileChange.file] = new Set() }
         result[fileChange.file].add(commit.author_name)
       })
-      return result;
+      return result
     }, {})
     let results = Object.keys(filesWithCoauthors).map((f) => {
       return {
@@ -21,7 +19,7 @@ module.exports = async function (input, config, visualisation) {
       }
     }).sort((a, b) => a.y >= b.y ? 1 : -1)
 
-    if(config && config.max_number_of_results && config.max_number_of_results < results.length) {
+    if (config && config.max_number_of_results && config.max_number_of_results < results.length) {
       results = results.splice(-config.max_number_of_results)
     }
 
@@ -33,10 +31,10 @@ module.exports = async function (input, config, visualisation) {
         name: 'Number of Commiters'
       }
     ], {
-      title: "Number of Distinct Authors per File",
+      title: 'Number of Distinct Authors per File',
       xaxis: {
         title: {
-          text: `Filename`
+          text: 'Filename'
         }
       },
       yaxis: {
@@ -44,6 +42,6 @@ module.exports = async function (input, config, visualisation) {
           text: 'Number of distinct authors'
         }
       }
-    }));
+    }))
   })
 }
