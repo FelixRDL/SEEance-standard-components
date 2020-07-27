@@ -12,15 +12,16 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^2.0.4",
-    "seeance-analysis-core": "^0.2.9",
+    "seeance-analysis-core": "^0.5.1",
     "rimraf": "^3.0.2",
     "simple-git": "^2.8.0"
   },
   "seeance": {
-    "depends_on": ["blame"],
+    "depends_on": [
+      "blame"
+    ],
     "config_schema": {},
     "type": "analysis",
-    "ignorePreprocessors": [
-    ]
+    "ignorePreprocessors": []
   }
 }

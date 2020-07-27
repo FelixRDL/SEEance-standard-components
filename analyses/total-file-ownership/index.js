@@ -1,7 +1,6 @@
 module.exports = async function (input, config, visualisation) {
-  const blame = input.blame;
-  const isNormalizing = config && config.normalize && config.normalize === true
-  authors = blame.reduce((acc, b) => {
+  const blame = input.blame
+  const authors = blame.reduce((acc, b) => {
     const fileAuthors = Object.keys(b.linesPerAuthor)
     return new Set([...acc, ...new Set(fileAuthors)])
   }, new Set())
@@ -15,29 +14,22 @@ module.exports = async function (input, config, visualisation) {
       dict[author] += b.linesPerAuthor[author]
     })
   })
-  const xs = Object.keys(dict)
-  let ys = Object.keys(dict).map(k => dict[k])
+  const authorsSorted = Object.keys(dict).sort((a, b) => a <= b ? -1 : 1)
 
-  if(isNormalizing) {
-    const sum = ys.reduce((a,y) => a+y, 0)
-    ys = ys.map(y => y/sum)
-  }
-
-
-
+  const plots = authorsSorted.map(a => {
+    return {
+      x: [a],
+      y: [dict[a]],
+      type: 'bar',
+      name: a
+    }
+  })
   return new Promise((resolve, reject) => {
-    resolve(visualisation.plot([
-      {
-        x: xs,
-        y: ys,
-        type: 'bar',
-        name: isNormalizing ? 'Line Ownership' : 'Proportionate Line Ownership'
-      }
-    ], {
-      title: "Line Ownership in current Project",
+    resolve(visualisation.plot(plots, {
+      title: 'Line Ownership in current Project',
       xaxis: {
         title: {
-          text: `Author`
+          text: 'Author'
         }
       },
       yaxis: {
@@ -45,6 +37,6 @@ module.exports = async function (input, config, visualisation) {
           text: 'Number of created lines'
         }
       }
-    }));
+    }))
   })
 }
