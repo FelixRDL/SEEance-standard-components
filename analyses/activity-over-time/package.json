@@ -27,10 +27,14 @@
     ],
     "config_schema": {
       "start_date": {
-        "type":"date"
+        "description": "Count commits after:",
+        "type":"string",
+        "widget": "date"
       },
       "end_date": {
-        "type": "date"
+        "description": "Count commits until:",
+        "type":"string",
+        "widget": "date"
       },
       "time_frame": {
         "type": "string",
