@@ -16,8 +16,8 @@ module.exports = async function (input, config, visualisation) {
     const diff = commits.map(c => { return c.additions - c.deletions })
     const xs = commits.map(c => c.date)
     const ys = diff.map((d, i) => diff.slice(0, i).reduce((a, b) => a + b, 0))
-    const yDels = commits.map((c, i) => input.commits.slice(0, i).reduce((a, b) => a + b.deletions, 0))
-    const yAdds = commits.map((c, i) => input.commits.slice(0, i).reduce((a, b) => a + b.additions, 0))
+    const yDels = commits.map((c, i) => commits.slice(0, i).reduce((a, b) => a + b.deletions, 0))
+    const yAdds = commits.map((c, i) => commits.slice(0, i).reduce((a, b) => a + b.additions, 0))
     resolve(visualisation.plot([
       {
         x: xs,
