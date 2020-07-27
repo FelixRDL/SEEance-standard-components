@@ -4,7 +4,7 @@
   "description": "Visualize source growth over time",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js rmccue test-repository --serve",
+    "dev": "nodemon test.js pichsenmeister wienerscript --serve",
     "test": "node test.js pichsenmeister wienerscript"
   },
   "keywords": [],
@@ -20,9 +20,19 @@
     "depends_on": [
       "commits"
     ],
-    "ignorePreprocessors": [
-    ],
-    "config_schema": {},
+    "ignorePreprocessors": [],
+    "config_schema": {
+      "start_date": {
+        "description": "Count commits after:",
+        "type": "string",
+        "widget": "date"
+      },
+      "end_date": {
+        "description": "Count commits until:",
+        "type": "string",
+        "widget": "date"
+      }
+    },
     "type": "analysis",
     "category": "Code Evolution"
   }
