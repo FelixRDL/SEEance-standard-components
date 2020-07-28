@@ -43,9 +43,6 @@ module.exports = async function (input, config) {
     result.blame = result.blame.filter(b => filterBlames(b, ignoredExtensions, ignoredContains))
     result.commits = result.commits.map(b => filterDiffsFromCommits(b, ignoredExtensions, ignoredContains))
     result.files = result.files.filter(f => filterFiles(f.file, ignoredExtensions, ignoredContains))
-
-    console.log("\n\n\n\n\n\n\n\n\n\nEXECUTE")
-
     resolve(result)
   })
 }
