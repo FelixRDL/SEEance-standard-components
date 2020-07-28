@@ -24,12 +24,12 @@ module.exports = async function (input, config, visualisation) {
       title: "Code Survival Rate",
       xaxis: {
         title: {
-          text: `Time in ${timeFrame}s`
+          text: `Ratio of survived code`
         }
       },
       yaxis: {
         title: {
-          text: 'Number of commits'
+          text: 'Author'
         }
       }
     }));
