@@ -4,7 +4,7 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js uniregensburg ASE_WS1718-sprechstundenverwaltung",
+    "dev": "nodemon test.js uniregensburg ASE_WS1718-sprechstundenverwaltung --serve",
     "test": "nodemon test.js uniregensburg ASE_WS1718-sprechstundenverwaltung"
   },
   "keywords": [],

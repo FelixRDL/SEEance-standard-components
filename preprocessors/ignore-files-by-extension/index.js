@@ -19,6 +19,12 @@ module.exports = async function (input, config) {
         return !(ignoredExtensions.includes(extension) ||
           ignoredContains.reduce((acc, c) => filename.includes(c) ? true : acc, false))
       })
+      commit.filesChanged = commit.filesChanged.filter(fc => {
+        const filename = path.posix.basename(fc.file)
+        const extension = (filename.split('.') ? filename.split('.').pop() : filename).toLowerCase()
+        return !(ignoredExtensions.includes(extension) ||
+          ignoredContains.reduce((acc, c) => filename.includes(c) ? true : acc, false))
+      })
       commit.additions = commit.diff.files.reduce((a, d) => a + d.insertions, 0)
       commit.deletions = commit.diff.files.reduce((a, d) => a + d.deletions, 0)
     }

@@ -14,18 +14,18 @@ async function runTest () {
     reloadOnly: true
   })
   await cp.init()
-  const datasources = await Promise.all(['blame','commits','files'].map((n) => cp.getDatasourceByName(n)))
+  const datasources = await Promise.all(['blame', 'commits', 'files'].map((n) => cp.getDatasourceByName(n)))
   return core.analyze(process.argv[2], process.argv[3], datasources, [{
     package: preprocessorPkg,
     module: preprocessor,
     config: {
       extensions: ['jpg', 'svg', 'png', 'mp4', 'wav'],
       contains: ['package-lock.json']
-    },
+    }
   }], {
     config: {},
     module: async (i, c, v) => {
-      console.log(JSON.stringify(i, undefined, 2))
+      fs.writeFileSync('result.json', JSON.stringify(i, undefined, 2))
       return Promise.resolve(i)
     },
     package: {
