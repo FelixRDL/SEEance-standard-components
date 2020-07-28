@@ -33,6 +33,20 @@ module.exports = async function (input, config) {
       }
       return c
     })
+
+    input.blame = input.blame.map(b => {
+      b.linesPerAuthor = Object.keys(b.linesPerAuthor).reduce((acc, key) => {
+        if (mappingDictNames[key]) {
+          acc[mappingDictNames[key].author_name] = b.linesPerAuthor[key]
+        } else {
+          acc[key] = b.linesPerAuthor[key]
+        }
+        return acc
+      }, {})
+      return b
+    })
+
+
     resolve(input)
   })
 }

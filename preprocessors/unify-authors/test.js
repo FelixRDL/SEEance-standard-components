@@ -11,10 +11,10 @@ runTest().then(() => {
 async function runTest () {
   const cp = await ComponentProvider({
     customRepositories: [],
-    reloadOnly: true
+    reloadOnly: false
   })
   await cp.init()
-  const datasources = await Promise.all(['commits'].map((n) => cp.getDatasourceByName(n)))
+  const datasources = await Promise.all(['commits', 'blame'].map((n) => cp.getDatasourceByName(n)))
   return core.analyze(process.argv[2], process.argv[3], datasources, [{
     package: preprocessorPkg,
     module: preprocessor,
