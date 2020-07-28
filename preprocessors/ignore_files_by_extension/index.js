@@ -25,10 +25,18 @@ module.exports = async function (input, config) {
     return commit
   }
 
+  function filterFiles (file, ignoredExtensions, ignoredContains) {
+    const filename = path.posix.basename(file)
+    const extension = (filename.split('.') ? filename.split('.').pop() : filename).toLowerCase()
+    return !(ignoredExtensions.includes(extension) ||
+      ignoredContains.reduce((acc, c) => filename.includes(c) ? true : acc, false))
+  }
+
   return new Promise((resolve, reject) => {
     const result = input
     result.blame = result.blame.filter(b => filterBlames(b, ignoredExtensions, ignoredContains))
     result.commits = result.commits.map(b => filterDiffsFromCommits(b, ignoredExtensions, ignoredContains))
+    result.files = result.files.filter(f => filterFiles(f.file, ignoredExtensions, ignoredContains))
     resolve(result)
   })
 }
