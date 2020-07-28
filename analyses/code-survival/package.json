@@ -1,0 +1,28 @@
+{
+  "name": "code-survival",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "node_modules/.bin/nodemon test.js uniregensburg ASE_WS1718-lehrplanung  --serve",
+    "test": "node test.js pichsenmeister wienerscript"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "seeance-analysis-core": "^0.0.19",
+    "rimraf": "^3.0.2",
+    "simple-git": "^2.8.0"
+  },
+  "seeance": {
+    "depends_on": ["commits", "blame"],
+    "config_schema": {},
+    "ignorePreprocessors": [
+      "remove-outlier-commits",
+      "remove-outlier-blame"
+    ],
+    "type": "analysis"
+  }
+}
