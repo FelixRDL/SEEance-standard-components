@@ -33,7 +33,7 @@
         "description": "Ignore extensions",
         "items": {
           "type": "string",
-          "description":  "Extension Type",
+          "description":  "Extension Type"
         }
       },
       "name_contains": {
