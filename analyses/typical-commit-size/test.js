@@ -11,13 +11,11 @@ async function runTest () {
   const cp = await ComponentProvider({
     customRepositories: []
   })
-  const sourcesNames = core.getDependencies([], {
-    pkg: analysisPkg
-  })
+  const sourcesNames = analysisPkg.seeance.depends_on
   await cp.init()
   const datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)))
   const result = await core.analyze(process.argv[2], process.argv[3], datasources, [], {
-    pkg: analysisPkg,
+    package: analysisPkg,
     module: analysis,
     config: analysisPkg.seeance
   })
