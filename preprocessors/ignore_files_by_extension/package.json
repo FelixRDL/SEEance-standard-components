@@ -31,17 +31,17 @@
       "extensions": {
         "type": "array",
         "description": "Ignore extensions",
+        "default": ["jpg", "mp4", "wav", "docx"],
         "items": {
-          "type": "string",
-          "description":  "Extension Type"
+          "type": "string"
         }
       },
       "name_contains": {
         "type": "array",
         "description": "Ignore filenames containing",
+        "default": ["package-lock"],
         "items": {
-          "type": "string",
-          "description": "Name Contains"
+          "type": "string"
         }
       }
     },
