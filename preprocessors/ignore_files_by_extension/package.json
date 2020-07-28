@@ -32,14 +32,16 @@
         "type": "array",
         "description": "Ignore extensions",
         "items": {
-          "type": "string"
+          "type": "string",
+          "description":  "Extension Type",
         }
       },
       "name_contains": {
         "type": "array",
         "description": "Ignore filenames containing",
         "items": {
-          "type": "string"
+          "type": "string",
+          "description": "Name Contains"
         }
       }
     },
