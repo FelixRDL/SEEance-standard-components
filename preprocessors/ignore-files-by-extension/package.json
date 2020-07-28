@@ -1,5 +1,5 @@
 {
-  "name": "ignore_files_by_extension",
+  "name": "ignore-files-by-extension",
   "version": "0.0.0",
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
