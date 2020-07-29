@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^2.0.4",
-    "seeance-analysis-core": "^0.2.9",
+    "seeance-analysis-core": "^0.5.7",
     "rimraf": "^3.0.2",
     "simple-git": "^2.8.0"
   },
@@ -31,7 +31,12 @@
       "extensions": {
         "type": "array",
         "description": "Ignore extensions",
-        "default": ["jpg", "mp4", "wav", "docx"],
+        "default": [
+          "jpg",
+          "mp4",
+          "wav",
+          "docx"
+        ],
         "items": {
           "type": "string"
         }
@@ -39,7 +44,9 @@
       "name_contains": {
         "type": "array",
         "description": "Ignore filenames containing",
-        "default": ["package-lock"],
+        "default": [
+          "package-lock"
+        ],
         "items": {
           "type": "string"
         }

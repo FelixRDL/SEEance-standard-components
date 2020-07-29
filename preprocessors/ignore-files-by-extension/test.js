@@ -11,7 +11,8 @@ runTest().then(() => {
 async function runTest () {
   const cp = await ComponentProvider({
     customRepositories: [],
-    reloadOnly: true
+    reloadOnly: false,
+    onlyLoad: ['files', 'blame', 'commits']
   })
   await cp.init()
   const datasources = await Promise.all(['blame', 'commits', 'files'].map((n) => cp.getDatasourceByName(n)))
@@ -20,7 +21,7 @@ async function runTest () {
     module: preprocessor,
     config: {
       extensions: ['jpg', 'svg', 'png', 'mp4', 'wav'],
-      contains: ['package-lock.json']
+      contains: ['package-lock']
     }
   }], {
     config: {},
@@ -29,7 +30,10 @@ async function runTest () {
       return Promise.resolve(i)
     },
     package: {
-      name: 'x'
+      name: 'x',
+      seeance: {
+
+      }
     }
   })
 }

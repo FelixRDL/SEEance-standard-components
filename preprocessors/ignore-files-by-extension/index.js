@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = async function (input, config) {
   const ignoredExtensions = config.extensions || []
-  const ignoredContains = config.contains || []
+  const ignoredContains = config.name_contains || []
 
   function filterBlames (blame, ignoredExtensions, ignoredContains) {
     const filename = path.posix.basename(blame.file)
