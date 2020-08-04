@@ -14,7 +14,7 @@ module.exports = async function (localPath, token = undefined) {
     s = s.filter((stat, i) => stat.stats.isFile())
     const lines = (await Promise.all(s.map(item => {
       return fs.promises.readFile(localPath + '/' + item.file, 'utf-8')
-    }))).map(content => content.split('\n').length)
+    }), (err) => console.error(err))).map(content => content.split('\n').length)
 
     const result = s.map((item, i) => {
       return {

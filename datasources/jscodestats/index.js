@@ -3,14 +3,13 @@ const glob = require('glob')
 const fs = require('fs')
 
 module.exports = async function (localPath, token = undefined) {
-
   /**
    * Solution taken by github User michaelficarra, https://github.com/jquery/esprima/issues/1151
    * @param text
    * @returns {*}
    */
-  function trimShebang(text) {
-    return text.replace(/^#!([^\r\n]+)/, function(match, captured) { return "//" + captured; });
+  function trimShebang (text) {
+    return text.replace(/^#!([^\r\n]+)/, function (match, captured) { return '//' + captured })
   }
 
   return new Promise((resolve, reject) => {
@@ -22,8 +21,15 @@ module.exports = async function (localPath, token = undefined) {
           code: trimShebang(code[i])
         }
       })
-      const result = esc.analyse(fileMap, {})
-      resolve(result.reports)
+      try {
+        console.log(fileMap.map(f => f.path))
+        const result = esc.analyse(fileMap, {
+
+        })
+        resolve(result.reports)
+      } catch (e) {
+        reject(e)
+      }
     })
   })
 }

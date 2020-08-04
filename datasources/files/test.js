@@ -7,8 +7,6 @@ const path = './.tmp'
 const logger = require('seeance-analysis-core').log
 const analyze = require('seeance-analysis-core').analyze
 
-console.log(package)
-
 rimraf(path, () => {
   analyze(process.argv[2], process.argv[3], [
     {
@@ -18,7 +16,8 @@ rimraf(path, () => {
     }
   ], [], {
     package: {
-      name: "TEST"
+      name: "TEST",
+      seeance: {}
     },
     module: async function(input, config, vis) {
       console.log(input)

@@ -4,14 +4,14 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test.js uniregensburg ASE_WS1718-notenverwaltung"
+    "test": "node test.js seeance-test-repos zettelkastenboizzz"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "rimraf": "^3.0.2",
-    "seeance-analysis-core": "^0.2.5",
+    "seeance-analysis-core": "^0.5.7",
     "simple-git": "^2.8.0"
   },
   "seeance": {
