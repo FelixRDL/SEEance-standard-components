@@ -4,7 +4,7 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test.js https://github.com/esolneman/oop-helper-handout-plugin"
+    "test": "node test.js https://github.com/seeance-test-repos/zettelkasten"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,6 @@
   "seeance": {
     "depends_on": [],
     "type": "datasource.git",
-    "ttl": 36000
+    "ttl": 360
   }
 }

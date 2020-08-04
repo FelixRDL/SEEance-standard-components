@@ -20,8 +20,7 @@ async function runTest () {
     pkg: analysisPkg,
     module: analysis,
     config: {
-      time_frame: 'week',
-      end_date: '2016-12-05T09:04:44+0000'
+      time_frame: 'day'
     }
   })
   // Solution by stackoverflow user JLeXanDR

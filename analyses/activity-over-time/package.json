@@ -4,8 +4,8 @@
   "description": "Activity Over Time",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js UniRegensburg Stoerungsmeldung --serve",
-    "test": "node test.js UniRegensburg Stoerungsmeldung"
+    "dev": "nodemon test.js SEEance-test-repos zettelkasten --serve",
+    "test": "node test.js SEEance-test-repos zettelkasten"
   },
   "keywords": [],
   "author": "",
