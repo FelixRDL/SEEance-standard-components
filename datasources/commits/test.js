@@ -11,5 +11,5 @@ async function test() {
   const result = await script(path)
   console.log("DATASOURCE TEST:")
   console.log(result)
-  rimraf(path)
+  // rimraf(path)
 }
