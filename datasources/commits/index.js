@@ -18,6 +18,7 @@ module.exports = async function (localPath, token = undefined) {
       return curr
     }).sort((a, b) => a.date >= b.date ? 1 : -1)
     console.log("CommitSource", commits)
+    console.log("CommitSource", "Len", commits.length)
     resolve(commits)
   })
 }
