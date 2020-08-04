@@ -74,7 +74,7 @@ module.exports = async function (localPath, token = undefined) {
           })
           return {
             hash: item.commit,
-            date: item.date,
+            date: new Date(item.date).toISOString(),
             message: item.message,
             author_name: item.author.split(' <')[0],
             author_email: (item.author.split(' <')[1]).split('>')[0],
