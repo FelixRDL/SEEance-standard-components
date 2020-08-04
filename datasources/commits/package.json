@@ -16,6 +16,6 @@
   "seeance": {
     "depends_on": [],
     "type": "datasource.git",
-    "ttl": 360
+    "ttl": 0
   }
 }
