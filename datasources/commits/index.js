@@ -60,7 +60,6 @@ module.exports = async function (localPath, token = undefined) {
   return new Promise((resolve, reject) => {
     getLog(localPath).then((logs) => {
       getDiffs(localPath).then((diffs) => {
-        console.log(diffs)
         let result = logs.map((log) => {
           log.diff = diffs[log.commit]
           return log
@@ -69,8 +68,8 @@ module.exports = async function (localPath, token = undefined) {
           const fileDiffs = item.diff.map((diff) => {
             return {
               file: diff.path,
-              insertions: diff.insertions,
-              deletions: diff.deletions
+              insertions: parseInt(diff.insertions) || 0,
+              deletions: parseInt(diff.deletions) || 0
             }
           })
           return {
