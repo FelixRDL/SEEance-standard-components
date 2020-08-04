@@ -4,6 +4,7 @@ module.exports = async function (localPath, token = undefined) {
   return new Promise(async (resolve, reject) => {
     const git = simpleGit(localPath)
     let commits = (await git.log(['--stat'])).all
+    console.log("CommitSource", "RawLen", commits.length)
     commits = commits.map((c) => {
       const curr = c
       if (c.diff) {
