@@ -4,7 +4,7 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test.js https://github.com/seeance-test-repos/zettelkasten"
+    "test": "node test.js https://github.com/seeance-test-repos/uradvisor"
   },
   "keywords": [],
   "author": "",

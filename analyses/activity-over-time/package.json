@@ -4,7 +4,7 @@
   "description": "Activity Over Time",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js SEEance-test-repos zettelkasten --serve",
+    "dev": "nodemon test.js SEEance-test-repos uradvisor --serve",
     "test": "node test.js SEEance-test-repos zettelkasten"
   },
   "keywords": [],
@@ -15,7 +15,7 @@
     "moment": "2.24.0",
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
-    "seeance-analysis-core": "^0.0.19",
+    "seeance-analysis-core": "^0.6.2",
     "simple-git": "^2.8.0"
   },
   "seeance": {
@@ -28,12 +28,12 @@
     "config_schema": {
       "start_date": {
         "description": "Count commits after:",
-        "type":"string",
+        "type": "string",
         "widget": "date"
       },
       "end_date": {
         "description": "Count commits until:",
-        "type":"string",
+        "type": "string",
         "widget": "date"
       },
       "time_frame": {

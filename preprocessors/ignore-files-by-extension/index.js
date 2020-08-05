@@ -42,9 +42,15 @@ module.exports = async function (input, config) {
 
   return new Promise((resolve, reject) => {
     const result = input
+
+    console.log("L Before", input.commits.length)
+
     result.blame = result.blame.filter(b => filterBlames(b, ignoredExtensions, ignoredContains))
     result.commits = result.commits.map(b => filterDiffsFromCommits(b, ignoredExtensions, ignoredContains))
     result.files = result.files.filter(f => filterFiles(f.file, ignoredExtensions, ignoredContains))
+
+    console.log("L After", result.commits.length)
+
     resolve(result)
   })
 }
