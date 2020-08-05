@@ -89,7 +89,7 @@ module.exports = async function (localPath, token = undefined) {
             filesChanged: fileDiffs
           }
         })
-        console.log('COMMIT DS LEN', result.length)
+        console.log('L COMMIT DS LEN', result.length)
         resolve(result)
       })
     })
