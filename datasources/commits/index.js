@@ -10,7 +10,7 @@ git log \\
 `
 
 const diffStatCommand = `cd $LOCALPATH;  \\
-git diff $STARTHASH $ENDHASH`
+git diff $STARTHASH...$ENDHASH`
 //  | diffstat -C -f0 -m -k
 
 async function getLog (path) {
