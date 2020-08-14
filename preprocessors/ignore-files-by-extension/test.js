@@ -21,7 +21,8 @@ async function runTest () {
     module: preprocessor,
     config: {
       extensions: ['jpg', 'svg', 'png', 'mp4', 'wav', 'ai'],
-      contains: ['package-lock']
+      contains: ['package-lock'],
+      within_path: ['node_modules']
     }
   }], {
     config: {},

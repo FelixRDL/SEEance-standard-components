@@ -12,8 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^2.0.4",
-    "seeance-analysis-core": "^0.5.7",
     "rimraf": "^3.0.2",
+    "seeance-analysis-core": "^0.5.7",
     "simple-git": "^2.8.0"
   },
   "seeance": {
@@ -44,6 +44,16 @@
       "name_contains": {
         "type": "array",
         "description": "Ignore filenames containing",
+        "default": [
+          "package-lock"
+        ],
+        "items": {
+          "type": "string"
+        }
+      },
+      "within_path": {
+        "type": "array",
+        "description": "Ignore files by path",
         "default": [
           "package-lock"
         ],
