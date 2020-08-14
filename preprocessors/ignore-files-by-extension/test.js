@@ -20,7 +20,7 @@ async function runTest () {
     package: preprocessorPkg,
     module: preprocessor,
     config: {
-      extensions: ['jpg', 'svg', 'png', 'mp4', 'wav'],
+      extensions: ['jpg', 'svg', 'png', 'mp4', 'wav', 'ai'],
       contains: ['package-lock']
     }
   }], {

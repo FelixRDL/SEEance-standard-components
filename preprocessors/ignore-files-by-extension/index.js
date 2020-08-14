@@ -35,7 +35,8 @@ module.exports = async function (input, config) {
         const oldFilename = path.posix.basename(fc.oldFile)
         const oldExtension = (oldFilename.split('.') ? oldFilename.split('.').pop() : oldFilename).toLowerCase()
         return !(ignoredExtensions.includes(extension) || ignoredExtensions.includes(oldExtension) ||
-          ignoredContains.reduce((acc, c) => filename.includes(c) ? true : acc, false))
+          ignoredContains.reduce((acc, c) => filename.includes(c) ? true : acc, false) ||
+          ignoredContains.reduce((acc, c) => oldFilename.includes(c) ? true : acc, false))
       })
     }
     return commit
