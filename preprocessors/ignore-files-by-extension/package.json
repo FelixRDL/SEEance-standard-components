@@ -4,8 +4,8 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js seeance-test-repos uradvisor --serve",
-    "test": "nodemon test.js seeance-test-repos uradvisor"
+    "dev": "nodemon test.js seeance-test-repos POMODORO --serve",
+    "test": "nodemon test.js seeance-test-repos POMODORO"
   },
   "keywords": [],
   "author": "",

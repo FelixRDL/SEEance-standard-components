@@ -26,14 +26,11 @@ async function runTest () {
   }], {
     config: {},
     module: async (i, c, v) => {
-      fs.writeFileSync('result.json', JSON.stringify(i, undefined, 2))
       return Promise.resolve(i)
     },
     package: {
       name: 'x',
-      seeance: {
-
-      }
+      seeance: {}
     }
   })
 }
