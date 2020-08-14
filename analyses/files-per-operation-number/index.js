@@ -1,6 +1,5 @@
 module.exports = async function (input, config, visualisation) {
-
-  function addByKeyReducer(acc, item, key) {
+  function addByKeyReducer (acc, item, key) {
     return acc + item[key]
   }
 
@@ -41,41 +40,42 @@ module.exports = async function (input, config, visualisation) {
     const modifications = fileNames.map((fn) => {
       return diffsPerFiles[fn].reduce((acc, diff) => addByKeyReducer(acc, diff, 'modifications'), 0)
     })
-    const plots = [ {
-      x: fileNames,
-      y: deletions,
-      type: 'bar',
-      name: 'deletions',
-      line: {
-        color: 'red'
-      }
-    }, {
-      x: fileNames,
-      y: modifications,
-      type: 'bar',
-      name: 'modifications',
-      line: {
-        color: 'orange'
-      }
-    }, {
-      x: fileNames,
-      y: insertions,
-      type: 'bar',
-      name: 'insertions',
-      line: {
-        color: 'green'
-      }
-    }, {
-      x: fileNames,
-      y: insertions.map((insertion, index) => insertion - deletions[index]),
-      type: 'bar',
-      name: 'locs',
-      line: {
-        color: 'blue'
-      }
-    }]
 
-    resolve(visualisation.plot(plots, {
+    resolve(visualisation.plot([
+      {
+        x: fileNames,
+        y: deletions,
+        type: 'bar',
+        name: 'deletions',
+        marker: {
+          color: 'red'
+        }
+      }, {
+        x: fileNames,
+        y: modifications,
+        type: 'bar',
+        name: 'modifications',
+        marker: {
+          color: 'orange'
+        }
+      }, {
+        x: fileNames,
+        y: insertions,
+        type: 'bar',
+        name: 'insertions',
+        marker: {
+          color: 'green'
+        }
+      }, {
+        x: fileNames,
+        y: insertions.map((insertion, index) => insertion - deletions[index]),
+        type: 'bar',
+        name: 'locs',
+        marker: {
+          color: 'blue'
+        }
+      }
+    ], {
       barmode: 'stack',
       title: 'Files per Operation Number',
       xaxis: {
