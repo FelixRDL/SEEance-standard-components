@@ -117,3 +117,5 @@ dist
 
 .tmp/
 result.json
+after.json
+before.json

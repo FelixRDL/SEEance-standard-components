@@ -4,8 +4,8 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js seeance-test-repos POMODORO --serve",
-    "test": "nodemon test.js seeance-test-repos POMODORO"
+    "dev": "nodemon test.js seeance-test-repos presentme --serve",
+    "test": "nodemon test.js seeance-test-repos presentme"
   },
   "keywords": [],
   "author": "",
@@ -55,7 +55,7 @@
         "type": "array",
         "description": "Ignore files by path",
         "default": [
-          "package-lock"
+          "node_modules"
         ],
         "items": {
           "type": "string"

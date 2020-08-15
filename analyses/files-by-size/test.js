@@ -9,7 +9,8 @@ runTest()
 
 async function runTest () {
   const cp = await ComponentProvider({
-    customRepositories: []
+    customRepositories: [],
+    onlyLoad: analysisPkg.seeance.depends_on
   })
   const sourcesNames = analysisPkg.seeance.depends_on
   await cp.init()

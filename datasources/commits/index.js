@@ -90,12 +90,12 @@ async function getDiffs (path) {
           author_email: (commit.author.split(' <')[1]).split('>')[0],
           diff: {
             files: diffs,
-            insertions: diffs.reduce((a, d) => { return a + d.insertions }, 0),
+            additions: diffs.reduce((a, d) => { return a + d.insertions }, 0),
             modifications: diffs.reduce((a, d) => { return a + d.modifications }, 0),
             deletions: diffs.reduce((a, d) => { return a + d.deletions }, 0),
             changed: diffs.length
           },
-          insertions: diffs.reduce((a, d) => { return a + d.insertions }, 0),
+          additions: diffs.reduce((a, d) => { return a + d.insertions }, 0),
           modifications: diffs.reduce((a, d) => { return a + d.modifications }, 0),
           deletions: diffs.reduce((a, d) => { return a + d.deletions }, 0),
           filesChanged: diffs

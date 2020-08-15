@@ -56,11 +56,11 @@ module.exports = async function (input, config) {
 
   return new Promise((resolve, reject) => {
     const result = input
+    fs.writeFileSync('before.json', JSON.stringify(input, undefined, 2))
     result.blame = result.blame.filter(b => filterBlames(b, ignoredExtensions, ignoredContains))
-    fs.writeFileSync('before.json', JSON.stringify(input.commits, undefined, 2))
     result.commits = input.commits.map(b => filterDiffsFromCommits(b, ignoredExtensions, ignoredContains))
-    fs.writeFileSync('after.json', JSON.stringify(result.commits, undefined, 2))
     result.files = result.files.filter(f => filterFiles(f.file, ignoredExtensions, ignoredContains))
+    fs.writeFileSync('after.json', JSON.stringify(result, undefined, 2))
     resolve(result)
   })
 }
