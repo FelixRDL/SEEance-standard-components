@@ -3,7 +3,7 @@ module.exports = async function (input, config, visualisation) {
     const visualizeBy = (config && config.dimension) ? config.dimension : 'lines'
     let files = input.files
     let ys
-    if(visualizeBy === 'lines') {
+    if (visualizeBy === 'lines') {
       files = files.sort((a, b) => a.lines >= b.lines ? 1 : -1)
       ys = files.map((file) => file.lines)
     } else {
