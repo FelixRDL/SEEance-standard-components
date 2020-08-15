@@ -18,30 +18,9 @@
   },
   "seeance": {
     "depends_on": [
-      "files"
+      "blame"
     ],
-    "config_schema": {
-      "dimension": {
-        "type": "string",
-        "description": "Visualize sizes in",
-        "widget": "radio",
-        "oneOf": [
-          {
-            "description": "Bytes",
-            "enum": [
-              "bytes"
-            ]
-          },
-          {
-            "description": "Lines",
-            "enum": [
-              "lines"
-            ]
-          }
-        ],
-        "default": "lines"
-      }
-    },
+    "config_schema": {},
     "type": "analysis",
     "category": "Project Statistics"
   },

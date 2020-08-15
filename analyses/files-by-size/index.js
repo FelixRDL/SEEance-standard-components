@@ -1,25 +1,23 @@
 module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
-    const visualizeBy = (config && config.dimension) ? config.dimension : 'lines'
-    let files = input.files
-    let ys
-    if (visualizeBy === 'lines') {
-      files = files.sort((a, b) => a.lines >= b.lines ? 1 : -1)
-      ys = files.map((file) => file.lines)
-    } else {
-      files = files.sort((a, b) => a.stats.size >= b.stats.size ? 1 : -1)
-      ys = files.map((file) => file.stats.size)
-    }
-    const xs = files.map((file) => file.file)
+    const accumulatedBlames = input.blame.map((blame) => {
+      return {
+        file: blame.file,
+        loc: Object.keys(blame.linesPerAuthor).reduce((acc, authorName) =>
+          acc + blame.linesPerAuthor[authorName], 0)
+      }
+    }).sort((a, b) => a.loc - b.loc)
+    const ys = accumulatedBlames.map(blame => blame.loc)
+    const xs = accumulatedBlames.map(blame => blame.file)
     resolve(visualisation.plot([
       {
         x: xs,
         y: ys,
         type: 'bar',
-        name: `File sizes (${visualizeBy})`
+        name: 'File sizes (LOC)'
       }
     ], {
-      title: `File sizes in Project (${visualizeBy})`,
+      title: 'File sizes in Project',
       xaxis: {
         title: {
           text: 'Filename'
@@ -27,7 +25,7 @@ module.exports = async function (input, config, visualisation) {
       },
       yaxis: {
         title: {
-          text: `${visualizeBy}`
+          text: 'LOC'
         }
       }
     }))
