@@ -76,6 +76,7 @@ module.exports = async function (input, config, visualisation) {
         }
       }
     ], {
+      hovermode: 'y unified',
       barmode: 'stack',
       title: 'Files per Operation Number',
       xaxis: {
