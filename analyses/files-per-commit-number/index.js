@@ -13,6 +13,9 @@ module.exports = async function (input, config, visualisation) {
       })
       return result
     }, {})
+    if (commitsForFiles['/dev/null']) {
+      delete commitsForFiles['/dev/null']
+    }
 
     const commitsByAuthors = input.commits.reduce((acc, commit) => {
       if (!acc[commit.author_name]) {
