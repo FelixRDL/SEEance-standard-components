@@ -30,26 +30,44 @@ module.exports = async function (input, config, visualisation) {
       if (groupedDiffs['/dev/null']) {
         delete groupedDiffs['/dev/null']
       }
-      const files = Object.keys(groupedDiffs)
+      const insertionFiles = Object.keys(groupedDiffs).map((file) => {
+        return {
+          file: file,
+          insertions: groupedDiffs[file].map(diff => diff.insertions).reduce(sumReducer, 0)
+        }
+      }).filter((entry) => entry.insertions > 0)
+      const modifiedFiles = Object.keys(groupedDiffs).map((file) => {
+        return {
+          file: file,
+          modifications: groupedDiffs[file].map(diff => diff.modifications).reduce(sumReducer, 0)
+        }
+      }).filter((entry) => entry.modifications > 0)
+      const deletionFiles = Object.keys(groupedDiffs).map((file) => {
+        return {
+          file: file,
+          deletions: groupedDiffs[file].map(diff => diff.deletions).reduce(sumReducer, 0)
+        }
+      }).filter((entry) => entry.deletions > 0)
+
       traces.push({
-        x: files,
-        y: files.map(file => groupedDiffs[file].map(diff => diff.insertions).reduce(sumReducer, 0)),
+        x: insertionFiles.map(entry => entry.file),
+        y: insertionFiles.map(entry => entry.insertions),
         type: 'bar',
         name: `#Inserted Lines (${author})`,
         meta: [`Inserted Lines by ${author}`],
         hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
       traces.push({
-        x: files,
-        y: files.map(file => groupedDiffs[file].map(diff => diff.modifications).reduce(sumReducer, 0)),
+        x: modifiedFiles.map(entry => entry.file),
+        y: modifiedFiles.map(entry => entry.modifications),
         type: 'bar',
         name: `#Modified Lines (${author})`,
         meta: [`Modified Lines by ${author}`],
         hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
       traces.push({
-        x: files,
-        y: files.map(file => groupedDiffs[file].map(diff => diff.deletions).reduce(sumReducer, 0)),
+        x: deletionFiles.map(entry => entry.file),
+        y: deletionFiles.map(entry => entry.deletions),
         type: 'bar',
         name: `#Deleted Lines (${author})`,
         meta: [`Deleted Lines by ${author}`],
