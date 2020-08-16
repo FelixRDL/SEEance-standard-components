@@ -4,8 +4,8 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "nodemon test.js esolneman OOP-Helper-Handout-Plugin --serve",
-    "test": "node test.js esolneman OOP-Helper-Handout-Plugin"
+    "dev": "nodemon test.js seeance-test-repos POMODORO --serve",
+    "test": "nodemon test.js seeance-test-repos POMODORO"
   },
   "keywords": [],
   "author": "",

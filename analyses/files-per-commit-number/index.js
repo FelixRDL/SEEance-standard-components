@@ -31,7 +31,9 @@ module.exports = async function (input, config, visualisation) {
       return acc
     }, {})
 
-    const files = Object.keys(commitsForFiles).sort((k, i) => commitsForFiles[k].length - commitsForFiles[i].length)
+    const files = Object.keys(commitsForFiles)
+      .sort((k, i) => commitsForFiles[k].length - commitsForFiles[i].length)
+      .filter(f => f !== '/dev/null')
     const plots = [{
       x: files,
       y: files.map(f => 0),
@@ -42,8 +44,11 @@ module.exports = async function (input, config, visualisation) {
     }].concat(Object.keys(commitsByAuthors).sort((a,b) => a <= b ? -1 : 1).map(k => {
       return {
         name: k,
-        x: Object.keys(commitsByAuthors[k].files),
-        y: Object.keys(commitsByAuthors[k].files).map(f => commitsByAuthors[k].files[f]),
+        x: Object.keys(commitsByAuthors[k].files)
+          .filter(f => f !== '/dev/null'),
+        y: Object.keys(commitsByAuthors[k].files)
+          .filter(f => f !== '/dev/null')
+          .map(f => commitsByAuthors[k].files[f]),
         type: 'bar'
       }
     }))
