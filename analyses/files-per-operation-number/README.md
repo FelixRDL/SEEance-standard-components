@@ -1,5 +1,5 @@
 ## Files per Operation Number
-Visualize the number of operations commited on each file.
+Visualize the number of operations commited on each file and by which team member.
 
 Since git does not explicitly track the number of line modifications, it is interpolated using 
 insertion and deletion count of a diff hunk within a commit: 
@@ -9,13 +9,8 @@ count. The difference is taken as the value for the higher count.
 *Example: a hunk with three insertions and two deletions will output: Two lines modified, zero 
 lines deleted and three minus one lines inserted.*
 
-### Sensible Preprocessors
-None
-
 ### Aspects worth investigating
-- files being never modified
-- files being extensively modified
-- files with high LOC count
+- files being extensively modified by multiple members
 
 ### Notable Sources
-- Liu, 2003
+- Liu & Stroulia, 2003

@@ -31,27 +31,29 @@ module.exports = async function (input, config, visualisation) {
         delete groupedDiffs['/dev/null']
       }
       const files = Object.keys(groupedDiffs)
-      console.log(files.map(file => groupedDiffs[file].map(diff => diff.deletions).reduce(sumReducer, 0)))
       traces.push({
         x: files,
         y: files.map(file => groupedDiffs[file].map(diff => diff.insertions).reduce(sumReducer, 0)),
         type: 'bar',
         name: `#Inserted Lines (${author})`,
-        hoverlabel: { namelength: -1 }
+        meta: [`Inserted Lines by ${author}`],
+        hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
       traces.push({
         x: files,
         y: files.map(file => groupedDiffs[file].map(diff => diff.modifications).reduce(sumReducer, 0)),
         type: 'bar',
         name: `#Modified Lines (${author})`,
-        hoverlabel: { namelength: -1 }
+        meta: [`Modified Lines by ${author}`],
+        hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
       traces.push({
         x: files,
         y: files.map(file => groupedDiffs[file].map(diff => diff.deletions).reduce(sumReducer, 0)),
         type: 'bar',
         name: `#Deleted Lines (${author})`,
-        hoverlabel: { namelength: -1 }
+        meta: [`Deleted Lines by ${author}`],
+        hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
     })
 
