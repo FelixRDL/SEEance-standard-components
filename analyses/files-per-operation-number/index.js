@@ -1,94 +1,74 @@
 module.exports = async function (input, config, visualisation) {
-  function addByKeyReducer (acc, item, key) {
-    return acc + item[key]
+  function sumReducer (acc, item) {
+    return acc + parseInt(item)
+  }
+
+  function groupDiffsByCommiterReducer (acc, commit) {
+    const files = commit.diff.files
+    if (!acc[commit.author_name]) {
+      acc[commit.author_name] = files
+    } else {
+      acc[commit.author_name] = acc[commit.author_name].concat(files)
+    }
+    return acc
   }
 
   return new Promise((resolve, reject) => {
-    const diffsPerFiles = {}
-    input.commits.map(commit => {
-      if (commit.diff) {
-        commit.diff.files.map(diff => {
-          if (!diffsPerFiles[diff.file]) {
-            diffsPerFiles[diff.file] = []
-          }
-          diffsPerFiles[diff.file].push(diff)
-        })
+    const diffsByAuthors = input.commits.reduce(groupDiffsByCommiterReducer, {})
+    const traces = []
+    Object.keys(diffsByAuthors).map(author => {
+      const groupedDiffs = {}
+      diffsByAuthors[author].map((diff) => {
+        const file = diff.file
+        if (!groupedDiffs[file]) {
+          groupedDiffs[file] = [diff]
+        } else {
+          groupedDiffs[file].push(diff)
+        }
+      })
+
+      if (groupedDiffs['/dev/null']) {
+        delete groupedDiffs['/dev/null']
       }
+      const files = Object.keys(groupedDiffs)
+      console.log(files.map(file => groupedDiffs[file].map(diff => diff.deletions).reduce(sumReducer, 0)))
+      traces.push({
+        x: files,
+        y: files.map(file => groupedDiffs[file].map(diff => diff.insertions).reduce(sumReducer, 0)),
+        type: 'bar',
+        name: `#Inserted Lines (${author})`,
+        hoverlabel: { namelength: -1 }
+      })
+      traces.push({
+        x: files,
+        y: files.map(file => groupedDiffs[file].map(diff => diff.modifications).reduce(sumReducer, 0)),
+        type: 'bar',
+        name: `#Modified Lines (${author})`,
+        hoverlabel: { namelength: -1 }
+      })
+      traces.push({
+        x: files,
+        y: files.map(file => groupedDiffs[file].map(diff => diff.deletions).reduce(sumReducer, 0)),
+        type: 'bar',
+        name: `#Deleted Lines (${author})`,
+        hoverlabel: { namelength: -1 }
+      })
     })
 
-    if (diffsPerFiles['/dev/null']) {
-      delete diffsPerFiles['/dev/null']
-    }
-
-    const fileNames = Object.keys(diffsPerFiles).sort((a, b) => {
-      const objA = diffsPerFiles[a]
-      const objB = diffsPerFiles[b]
-      const sumA = objA.reduce((acc, a) => addByKeyReducer(acc, a, 'insertions'), 0) +
-        objA.reduce((acc, a) => addByKeyReducer(acc, a, 'deletions'), 0) +
-        objA.reduce((acc, a) => addByKeyReducer(acc, a, 'modifications'), 0)
-      const sumB = objB.reduce((acc, a) => addByKeyReducer(acc, a, 'insertions'), 0) +
-        objB.reduce((acc, a) => addByKeyReducer(acc, a, 'deletions'), 0) +
-        objB.reduce((acc, a) => addByKeyReducer(acc, a, 'modifications'), 0)
-      return sumA - sumB > 0 ? 1 : -1
-    })
-    const insertions = fileNames.map((fn) => {
-      return diffsPerFiles[fn].reduce((acc, diff) => addByKeyReducer(acc, diff, 'insertions'), 0)
-    })
-    const deletions = fileNames.map((fn) => {
-      return diffsPerFiles[fn].reduce((acc, diff) => addByKeyReducer(acc, diff, 'deletions'), 0)
-    })
-    const modifications = fileNames.map((fn) => {
-      return diffsPerFiles[fn].reduce((acc, diff) => addByKeyReducer(acc, diff, 'modifications'), 0)
-    })
-
-    resolve(visualisation.plot([
+    resolve(visualisation.plot(traces,
       {
-        x: fileNames,
-        y: deletions,
-        type: 'bar',
-        name: 'deletions',
-        marker: {
-          color: 'red'
+        barmode: 'stack',
+        title: 'Files per Operation Number',
+        xaxis: {
+          title: {
+            text: 'Filename'
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Number of operations'
+          }
         }
-      }, {
-        x: fileNames,
-        y: modifications,
-        type: 'bar',
-        name: 'modifications',
-        marker: {
-          color: 'orange'
-        }
-      }, {
-        x: fileNames,
-        y: insertions,
-        type: 'bar',
-        name: 'insertions',
-        marker: {
-          color: 'green'
-        }
-      }, {
-        x: fileNames,
-        y: insertions.map((insertion, index) => insertion - deletions[index]),
-        type: 'bar',
-        name: 'locs',
-        marker: {
-          color: 'blue'
-        }
-      }
-    ], {
-      hovermode: 'y unified',
-      barmode: 'stack',
-      title: 'Files per Operation Number',
-      xaxis: {
-        title: {
-          text: 'Filename'
-        }
-      },
-      yaxis: {
-        title: {
-          text: 'Number of operations'
-        }
-      }
-    }))
+      }))
   })
 }
