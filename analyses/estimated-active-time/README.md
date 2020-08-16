@@ -21,4 +21,6 @@ authors have used multiple aliases, you should de-alias them before analysis.
 
 ### Notable Sources
 - Eick et al., 1996
+- Liu & Stroulia, 2003
+- Jones, 2010
 - Algorithm by [kimmobrunfeldt](https://github.com/kimmobrunfeldt/git-hours)

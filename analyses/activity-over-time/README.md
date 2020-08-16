@@ -11,8 +11,9 @@ you should add such a preprocessor to de-alias your authors.
 - longer phases of inactivity (days, weeks) may indicate procrastinative behavior 
 - strong deviations in activity near dates of major deadlines
 - equal distribution among team members
+- starting date
 
 ### Notable Sources
-- Spring & Conci, 2019
-- Higueras et al., 2018
-- Wong et al., 2003
+- Liu et al., 2004
+- Glassy, 2006
+- Mittal & Sureka, 2014

@@ -13,5 +13,3 @@ such as images or videos, you can remove those with this preprocessor.
 
 ### Notable Sources
 - German & Hindle, 2006
-- Wu & Xiaomin, 2003
-- Johnson, 2001
