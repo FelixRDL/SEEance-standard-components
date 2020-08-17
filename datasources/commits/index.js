@@ -1,30 +1,29 @@
-const exec = require('child_process').exec
+const spawn = require('child_process').spawn
 var parse = require('parse-diff')
-
-const MAX_BUFFER_SIZE = 20 * 1024 * 1024
-
-const diffLogCommand = `cd $LOCALPATH; \\
-git log \\
-    --pretty=format:'{%n  "hash": "%H",%n  "author": "%aN <%aE>",%n  "date": "%ad",%n  "message": "%f"%n},' \\
-    $@ | \\
-    perl -pe 'BEGIN{print "["}; END{print "]\\n"}' | \\
-    perl -pe 's/},]/}]/'
-`
-
-const diffStatCommand = `cd $LOCALPATH;  \\
-git diff $STARTHASH..$ENDHASH`
-//  | diffstat -C -f0 -m -k
 
 async function getLog (path) {
   return new Promise((resolve, reject) => {
-    const cmd = diffLogCommand.replace(/\$LOCALPATH/gi, path)
-    exec(cmd, { maxBuffer: MAX_BUFFER_SIZE }, (err, stdout, stderr) => {
-      if (err || stderr) {
-        reject(err || stderr)
-      } else {
-        resolve(JSON.parse(stdout))
-      }
-    })
+    let buffer = ''
+    try {
+      const childProcess = spawn('git', [
+        'log',
+        '--pretty=format:{%n  "hash": "%H",%n  "author": "%aN <%aE>",%n  "date": "%ad",%n  "message": "%f"%n},'
+      ], {
+        cwd: path
+      })
+      childProcess.stdout.on('data', function (data) {
+        buffer += data.toString('utf8')
+      })
+      childProcess.on('close', function (data) {
+        const fixedBuffer = ('[' + buffer + ']').replace('},]', '}]')
+        resolve(JSON.parse(fixedBuffer))
+      })
+      childProcess.stderr.on('data', function (data) {
+        reject(data)
+      })
+    } catch (e) {
+      reject(e)
+    }
   })
 }
 
@@ -64,16 +63,26 @@ function summarizeDiff (diff) {
 
 async function getDiffStat (path, commitA, commitB) {
   return new Promise((resolve, reject) => {
-    const cmd = diffStatCommand.replace('$LOCALPATH', path)
-      .replace('$STARTHASH', commitA)
-      .replace('$ENDHASH', commitB)
-    exec(cmd, { maxBuffer: MAX_BUFFER_SIZE }, (err, stdout, stderr) => {
-      if (err || stderr) {
-        reject(err || stderr)
-      } else {
-        resolve(parseGitstat(stdout))
-      }
-    })
+    let buffer = ''
+    try {
+      const childProcess = spawn('git', [
+        'diff',
+        commitA + '..' + commitB
+      ], {
+        cwd: path
+      })
+      childProcess.stdout.on('data', function (data) {
+        buffer += data.toString('utf8')
+      })
+      childProcess.on('close', function (data) {
+        resolve(parseGitstat(buffer))
+      })
+      childProcess.stderr.on('data', function (data) {
+        reject(data)
+      })
+    } catch (e) {
+      reject(e)
+    }
   })
 }
 
