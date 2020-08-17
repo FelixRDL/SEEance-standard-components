@@ -1,6 +1,8 @@
 const exec = require('child_process').exec
 var parse = require('parse-diff')
 
+const MAX_BUFFER_SIZE = 20 * 1024 * 1024
+
 const diffLogCommand = `cd $LOCALPATH; \\
 git log \\
     --pretty=format:'{%n  "hash": "%H",%n  "author": "%aN <%aE>",%n  "date": "%ad",%n  "message": "%f"%n},' \\
@@ -16,7 +18,7 @@ git diff $STARTHASH..$ENDHASH`
 async function getLog (path) {
   return new Promise((resolve, reject) => {
     const cmd = diffLogCommand.replace(/\$LOCALPATH/gi, path)
-    exec(cmd, (err, stdout, stderr) => {
+    exec(cmd, { maxBuffer: MAX_BUFFER_SIZE }, (err, stdout, stderr) => {
       if (err || stderr) {
         reject(err || stderr)
       } else {
@@ -65,7 +67,7 @@ async function getDiffStat (path, commitA, commitB) {
     const cmd = diffStatCommand.replace('$LOCALPATH', path)
       .replace('$STARTHASH', commitA)
       .replace('$ENDHASH', commitB)
-    exec(cmd, { maxBuffer: 1024 * 5096 }, (err, stdout, stderr) => {
+    exec(cmd, { maxBuffer: MAX_BUFFER_SIZE }, (err, stdout, stderr) => {
       if (err || stderr) {
         reject(err || stderr)
       } else {
