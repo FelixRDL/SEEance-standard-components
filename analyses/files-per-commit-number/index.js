@@ -1,5 +1,18 @@
 module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
+    const standardColors = [
+      '#1f77b4',
+      '#ff7f0e',
+      '#2ca02c',
+      '#d62728',
+      '#9467bd',
+      '#8c564b',
+      '#e377c2',
+      '#7f7f7f',
+      '#bcbd22',
+      '#17becf'
+    ]
+
     const commitsForFiles = input.commits.reduce((acc, commit) => {
       if (!commit.filesChanged) { return acc }
       const files = commit.filesChanged
@@ -41,7 +54,7 @@ module.exports = async function (input, config, visualisation) {
       name: 'total',
       showlegend: false,
       hoverinfo: 'none'
-    }].concat(Object.keys(commitsByAuthors).sort((a,b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1).map(k => {
+    }].concat(Object.keys(commitsByAuthors).sort((a, b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1).map((k, i) => {
       return {
         name: k,
         x: Object.keys(commitsByAuthors[k].files)
@@ -49,7 +62,10 @@ module.exports = async function (input, config, visualisation) {
         y: Object.keys(commitsByAuthors[k].files)
           .filter(f => f !== '/dev/null')
           .map(f => commitsByAuthors[k].files[f]),
-        type: 'bar'
+        type: 'bar',
+        marker: {
+          color: standardColors[i % standardColors.length]
+        }
       }
     }))
 
