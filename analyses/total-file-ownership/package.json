@@ -22,6 +22,9 @@
     ],
     "config_schema": {},
     "type": "analysis",
-    "ignorePreprocessors": []
+    "ignorePreprocessors": [],
+    "layout": {
+      "colspan": 1
+    }
   }
 }

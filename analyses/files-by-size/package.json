@@ -22,7 +22,10 @@
     ],
     "config_schema": {},
     "type": "analysis",
-    "category": "Project Statistics"
+    "category": "Project Statistics",
+    "layout": {
+      "colspan": 2
+    }
   },
   "ignorePreprocessors": []
 }

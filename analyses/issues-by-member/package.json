@@ -27,6 +27,9 @@
     },
     "type": "analysis",
     "category": "Collaboration",
-    "ignorePreprocessors": []
+    "ignorePreprocessors": [],
+    "layout": {
+      "colspan": 1
+    }
   }
 }

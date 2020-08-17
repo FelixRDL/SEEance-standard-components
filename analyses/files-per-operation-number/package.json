@@ -23,6 +23,9 @@
     "type": "analysis",
     "category": "Project Statistics",
     "ignorePreprocessors": [],
-    "config_schema": {}
+    "config_schema": {},
+    "layout": {
+      "colspan": 2
+    }
   }
 }

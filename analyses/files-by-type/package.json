@@ -28,6 +28,9 @@
     "type": "analysis",
     "category": "Project Statistics",
     "ignorePreprocessors": [
-    ]
+    ],
+    "layout": {
+      "colspan": 1
+    }
   }
 }

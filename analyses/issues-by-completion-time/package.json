@@ -35,6 +35,9 @@
         }
       }
     },
-    "type": "analysis"
+    "type": "analysis",
+    "layout": {
+      "colspan": 2
+    }
   }
 }

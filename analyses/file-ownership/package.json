@@ -22,7 +22,10 @@
     ],
     "config_schema": {},
     "type": "analysis",
-    "category": "Ownership",
-    "ignorePreprocessors": []
+    "category": "Collaboration",
+    "ignorePreprocessors": [],
+    "layout": {
+      "colspan": 2
+    }
   }
 }

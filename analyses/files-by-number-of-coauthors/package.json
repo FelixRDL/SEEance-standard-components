@@ -30,6 +30,9 @@
     "category": "Collaboration",
     "ignorePreprocessors": [
       "remove-outlier-blame"
-    ]
+    ],
+    "layout": {
+      "colspan": 1
+    }
   }
 }

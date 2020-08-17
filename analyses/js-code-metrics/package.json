@@ -49,6 +49,9 @@
     },
     "type": "analysis",
     "ignorePreprocessors": [
-    ]
+    ],
+    "layout": {
+      "colspan": 2
+    }
   }
 }

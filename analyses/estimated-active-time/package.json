@@ -34,8 +34,12 @@
       }
     },
     "type": "analysis",
+    "category": "Workload Distribution",
     "ignorePreprocessors": [
       "remove-outlier-commits"
-    ]
+    ],
+    "layout": {
+      "colspan": 1
+    }
   }
 }

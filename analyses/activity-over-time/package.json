@@ -76,6 +76,9 @@
       }
     },
     "type": "analysis",
-    "category": "Collaboration"
+    "category": "Time Management",
+    "layout": {
+      "colspan": 1
+    }
   }
 }
