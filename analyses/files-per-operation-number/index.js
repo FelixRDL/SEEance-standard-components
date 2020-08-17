@@ -36,7 +36,7 @@ function totalOperationsByFileReducer (acc, commit) {
 }
 
 function getSortedFileNames (dict) {
-  return Object.keys(dict).sort((keyA, keyB) => dict[keyA] - dict[keyB] > 0 ? -1 : 1)
+  return Object.keys(dict).sort((keyA, keyB) => dict[keyA] - dict[keyB] <= 0 ? -1 : 1)
 }
 
 module.exports = async function (input, config, visualisation) {
