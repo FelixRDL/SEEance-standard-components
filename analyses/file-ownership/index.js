@@ -27,7 +27,7 @@ function linesForAllKeysCounter (dict) {
 module.exports = async function (input, config, visualisation) {
   const blame = input.blame
   const authorSet = blame.reduce(authorSetReducer, new Set())
-  const authors = Array.from(authorSet).sort((a, b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1)
+  const authors = Array.from(authorSet).sort((a, b) => a.toLowerCase() >= b.toLowerCase() ? -1 : 1)
   const dict = authors.reduce(authorToTraceReducer, {})
   blame.forEach((b) => {
     const authors = Object.keys(b.linesPerAuthor)
