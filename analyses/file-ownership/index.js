@@ -27,7 +27,7 @@ function linesForAllKeysCounter (dict) {
 module.exports = async function (input, config, visualisation) {
   const blame = input.blame
   const authorSet = blame.reduce(authorSetReducer, new Set())
-  const authors = Array.from(authorSet).sort((a, b) => a.toLowerCase() >= b.toLowerCase() ? -1 : 1)
+  const authors = Array.from(authorSet).sort((a, b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1)
   const dict = authors.reduce(authorToTraceReducer, {})
   blame.forEach((b) => {
     const authors = Object.keys(b.linesPerAuthor)
@@ -39,9 +39,8 @@ module.exports = async function (input, config, visualisation) {
   })
   const result = Object.keys(dict).map(k => dict[k])
   const tickvals = blame.sort((blameA, blameB) => {
-    return linesForAllKeysCounter(blameA.linesPerAuthor) - linesForAllKeysCounter(blameB.linesPerAuthor) < 0 ? 1 : -1
+    return linesForAllKeysCounter(blameA.linesPerAuthor) - linesForAllKeysCounter(blameB.linesPerAuthor) >= 0 ? 1 : -1
   }).map(blame => blame.file)
-  const ticktexts = tickvals.map(s => truncate(s, TICK_TRUNCATE_MAX))
 
   return new Promise((resolve, reject) => {
     resolve(visualisation.plot(
@@ -53,8 +52,6 @@ module.exports = async function (input, config, visualisation) {
           title: {
             text: 'Filename'
           },
-          tickvals: tickvals,
-          ticktext: ticktexts,
           categoryarray: tickvals,
           categoryorder: 'array'
         },
