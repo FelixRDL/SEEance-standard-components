@@ -14,7 +14,7 @@ module.exports = async function (input, config, visualisation) {
       dict[author] += b.linesPerAuthor[author]
     })
   })
-  const authorsSorted = Object.keys(dict).sort((a, b) => a <= b ? -1 : 1)
+  const authorsSorted = Object.keys(dict).sort((a, b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1)
 
   const plots = authorsSorted.map(a => {
     return {

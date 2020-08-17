@@ -4,7 +4,7 @@ module.exports = async function (input, config, visualisation) {
     const fileAuthors = Object.keys(b.linesPerAuthor)
     return new Set([...acc, ...new Set(fileAuthors)])
   }, new Set())
-  const authors = Array.from(authorSet).sort((a, b) => a <= b ? -1 : 1)
+  const authors = Array.from(authorSet).sort((a, b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1)
   const dict = authors.reduce((acc, a) => {
     acc[a] = {
       x: [],

@@ -41,7 +41,7 @@ module.exports = async function (input, config, visualisation) {
       name: 'total',
       showlegend: false,
       hoverinfo: 'none'
-    }].concat(Object.keys(commitsByAuthors).sort((a,b) => a <= b ? -1 : 1).map(k => {
+    }].concat(Object.keys(commitsByAuthors).sort((a,b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1).map(k => {
       return {
         name: k,
         x: Object.keys(commitsByAuthors[k].files)

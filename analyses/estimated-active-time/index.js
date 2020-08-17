@@ -12,7 +12,7 @@ module.exports = async function (input, config, visualisation) {
       acc[c.author_name].push(c)
       return acc
     }, {})
-    const authors = Object.keys(commitsByAuthor).sort((a, b) => a <= b ? -1 : 1)
+    const authors = Object.keys(commitsByAuthor).sort((a, b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1)
     const workSessions = authors.map(k => {
       // Sort Commits by Date
       const sortedCommitsForAuthor = commitsByAuthor[k].sort((c1, c2) => c1.date <= c2.date ? 1 : -1)
