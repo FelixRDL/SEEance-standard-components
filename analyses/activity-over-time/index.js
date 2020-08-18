@@ -14,7 +14,7 @@ module.exports = async function (input, config, visualisation) {
   function getWeeksBetween (dateFrom, dateTo) {
     var weeks = []
     var startDate = moment(dateFrom).isoWeekday(8)
-    if (startDate.date() == 8) {
+    if (startDate.date() === 8) {
       startDate = startDate.isoWeekday(-6)
     }
     while (startDate.isBefore(moment(dateTo))) {
@@ -66,7 +66,7 @@ module.exports = async function (input, config, visualisation) {
           return moment(c.date).format(format)
         }
       })
-      xs = timeFrame !== 'week' ? Object.keys(commitsByTime).sort((a, b) => a >= b ? 1 : -1) : weeks
+      const xs = timeFrame !== 'week' ? Object.keys(commitsByTime).sort((a, b) => a >= b ? 1 : -1) : weeks
       return {
         x: xs,
         y: xs.map(k => commitsByTime[k] ? commitsByTime[k].length : 0),
@@ -75,10 +75,10 @@ module.exports = async function (input, config, visualisation) {
       }
     })
     resolve(visualisation.plot(authorPlots, {
-      title: 'Activity Over Time',
+      title: 'Activity Over Time<br><sub>Number of commits by authors over time</sub>',
       xaxis: {
         title: {
-          text: `Time in ${timeFrame}s`
+          text: 'Time'
         }
       },
       yaxis: {
