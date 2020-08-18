@@ -45,19 +45,21 @@ module.exports = async function (input, config, visualisation) {
   return new Promise((resolve, reject) => {
     resolve(visualisation.plot(
       result, {
-        title: 'Ownership By File',
+        title: 'File Ownership<br><sub>Line ownership per file</sub>',
         barmode: 'stack',
         xaxis: {
           automargin: true,
           title: {
-            text: 'Filename'
+            text: 'File'
           },
+          tickvals: tickvals,
+          ticktext: tickvals.map(tick => truncate(tick, TICK_TRUNCATE_MAX)),
           categoryarray: tickvals,
           categoryorder: 'array'
         },
         yaxis: {
           title: {
-            text: 'Lines created by author'
+            text: 'Number of lines'
           }
         }
       }))
