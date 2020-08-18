@@ -113,7 +113,7 @@ module.exports = async function (input, config, visualisation) {
         },
         yaxis: {
           title: {
-            text: 'Number of operations'
+            text: 'Number of Operations'
           }
         }
       }))
