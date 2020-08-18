@@ -1,3 +1,9 @@
+const TICK_TRUNCATE_MAX = 10
+
+function truncate (s, MAX_LENGTH) {
+  return s.length > MAX_LENGTH ? '...' + s.substring(s.length - MAX_LENGTH - 4, s.length) : s
+}
+
 function commitsByFilesReducer (acc, commit) {
   if (!commit.filesChanged) { return acc }
   const files = commit.filesChanged
@@ -68,6 +74,7 @@ module.exports = async function (input, config, visualisation) {
         y: Object.keys(commitsByAuthors[k].files)
           .filter(f => f !== '/dev/null')
           .map(f => commitsByAuthors[k].files[f]),
+        text: xs,
         type: 'bar',
         marker: {
           color: standardColors[i % standardColors.length]
@@ -77,12 +84,16 @@ module.exports = async function (input, config, visualisation) {
 
     resolve(visualisation.plot(plots, {
       barmode: 'stack',
-      title: 'Files per Commit Number',
+      title: 'Commits per File',
       xaxis: {
         title: {
-          text: 'Filename'
+          text: 'File'
         },
-        automargin: true
+        automargin: true,
+        tickvals: files,
+        ticktext: files.map(tick => truncate(tick, TICK_TRUNCATE_MAX)),
+        categoryarray: files,
+        categoryorder: 'array'
       },
       yaxis: {
         title: {
