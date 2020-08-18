@@ -23,7 +23,12 @@
     "type": "analysis",
     "category": "Project Statistics",
     "ignorePreprocessors": [],
-    "config_schema": {},
+    "config_schema": {
+      "max_number_of_results": {
+        "type": "number",
+        "default": null
+      }
+    },
     "layout": {
       "colspan": 2
     }

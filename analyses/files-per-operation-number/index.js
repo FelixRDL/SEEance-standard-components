@@ -1,3 +1,10 @@
+const TICK_TRUNCATE_MAX = 10
+const MAX_NUMBER_OF_ENTRIES = 30
+
+function truncate (s, MAX_LENGTH) {
+  return s.length > MAX_LENGTH ? '...' + s.substring(s.length - MAX_LENGTH - 4, s.length) : s
+}
+
 function sumReducer (acc, item) {
   return acc + parseInt(item)
 }
@@ -40,10 +47,12 @@ function getSortedFileNames (dict) {
 }
 
 module.exports = async function (input, config, visualisation) {
+  const maxNumberOfResults = config.max_number_of_results || MAX_NUMBER_OF_ENTRIES
   return new Promise((resolve, reject) => {
     const diffsByAuthors = input.commits.reduce(groupDiffsByCommiterReducer, {})
     const traces = []
     const xs = getSortedFileNames(input.commits.reduce(totalOperationsByFileReducer, {}))
+    const cappedXs = xs.length > maxNumberOfResults ? xs.slice(xs.length - maxNumberOfResults) : xs
     Object.keys(diffsByAuthors).map(author => {
       const groupedDiffs = {}
       diffsByAuthors[author].map((diff) => {
@@ -58,15 +67,15 @@ module.exports = async function (input, config, visualisation) {
       if (groupedDiffs['/dev/null']) {
         delete groupedDiffs['/dev/null']
       }
-      const insertionFiles = cumulateDiffsByTypeMapper(groupedDiffs, 'insertions')
-      const modifiedFiles = cumulateDiffsByTypeMapper(groupedDiffs, 'modifications')
-      const deletionFiles = cumulateDiffsByTypeMapper(groupedDiffs, 'deletions')
+      const insertionFiles = cumulateDiffsByTypeMapper(groupedDiffs, 'insertions').filter(entry => cappedXs.includes(entry.file))
+      const modifiedFiles = cumulateDiffsByTypeMapper(groupedDiffs, 'modifications').filter(entry => cappedXs.includes(entry.file))
+      const deletionFiles = cumulateDiffsByTypeMapper(groupedDiffs, 'deletions').filter(entry => cappedXs.includes(entry.file))
 
       traces.push({
         x: insertionFiles.map(entry => entry.file),
         y: insertionFiles.map(entry => entry.insertions),
         type: 'bar',
-        name: `#Inserted Lines (${author})`,
+        name: `#Insertions (${author})`,
         meta: [`Inserted Lines by ${author}`],
         hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
@@ -74,7 +83,7 @@ module.exports = async function (input, config, visualisation) {
         x: modifiedFiles.map(entry => entry.file),
         y: modifiedFiles.map(entry => entry.modifications),
         type: 'bar',
-        name: `#Modified Lines (${author})`,
+        name: `#Modifications (${author})`,
         meta: [`Modified Lines by ${author}`],
         hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
@@ -82,7 +91,7 @@ module.exports = async function (input, config, visualisation) {
         x: deletionFiles.map(entry => entry.file),
         y: deletionFiles.map(entry => entry.deletions),
         type: 'bar',
-        name: `#Deleted Lines (${author})`,
+        name: `#Deletetions (${author})`,
         meta: [`Deleted Lines by ${author}`],
         hovertemplate: '<i>%{x}</i>: %{y}<br>'
       })
@@ -91,12 +100,15 @@ module.exports = async function (input, config, visualisation) {
     resolve(visualisation.plot(traces,
       {
         barmode: 'stack',
-        title: 'Files per Operation Number',
+        title: `Operations per File<br><sub>Linewise operations by file (top ${cappedXs.length} or ${xs.length})</sub>`,
         xaxis: {
           title: {
-            text: 'Filename'
+            text: 'File'
           },
-          categoryarray: xs,
+          automargin: true,
+          tickvals: cappedXs,
+          ticktext: cappedXs.map(tick => truncate(tick, TICK_TRUNCATE_MAX)),
+          categoryarray: cappedXs,
           categoryorder: 'array'
         },
         yaxis: {

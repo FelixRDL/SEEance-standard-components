@@ -19,7 +19,7 @@ async function runTest () {
     package: analysisPkg,
     module: analysis,
     config: {
-      max_number_of_results: 10
+      max_number_of_results: 35
     }
   })
   // Solution by stackoverflow user JLeXanDR
