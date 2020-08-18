@@ -1,4 +1,4 @@
-const TICK_TRUNCATE_MAX = 10
+const TICK_TRUNCATE_MAX = 8
 
 function truncate (s, MAX_LENGTH) {
   return s.length > MAX_LENGTH ? '...' + s.substring(s.length - MAX_LENGTH - 4, s.length) : s
