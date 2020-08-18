@@ -23,13 +23,13 @@ module.exports = async function (input, config, visualisation) {
         y: ys,
         text: xs,
         type: 'bar',
-        name: 'File sizes (LOC)'
+        name: 'File sizes'
       }
     ], {
-      title: 'File sizes in Project',
+      title: 'File Size<br><sub>LOC per file</sub>',
       xaxis: {
         title: {
-          text: 'Filename'
+          text: 'File'
         },
         tickvals: xs,
         ticktext: xs.map(x => truncate(x, TICK_TRUNCATE_MAX)),
@@ -37,7 +37,7 @@ module.exports = async function (input, config, visualisation) {
       },
       yaxis: {
         title: {
-          text: 'LOC'
+          text: 'Number of Lines'
         }
       }
     }))
