@@ -31,7 +31,7 @@ module.exports = async function (input, config, visualisation) {
         x: xs,
         y: yDels,
         type: 'scatter',
-        name: 'Summed Deletions',
+        name: 'Deletions (accumulated)',
         line: {
           color: 'red'
         }
@@ -39,13 +39,13 @@ module.exports = async function (input, config, visualisation) {
         x: xs,
         y: yAdds,
         type: 'scatter',
-        name: 'Summed Additions',
+        name: 'Insertions (accumulated)',
         line: {
           color: 'green'
         }
       }
     ], {
-      title: 'Project Evolution in LOC',
+      title: 'Source Code Evolution<br><sub>Growth of project LOC over time</sub>',
       xaxis: {
         title: {
           text: 'Time'
@@ -53,7 +53,7 @@ module.exports = async function (input, config, visualisation) {
       },
       yaxis: {
         title: {
-          text: 'Number of operations'
+          text: 'Number of lines'
         }
       }
     }))
