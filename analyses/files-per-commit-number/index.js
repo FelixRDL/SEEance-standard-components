@@ -88,7 +88,7 @@ module.exports = async function (input, config, visualisation) {
 
     resolve(visualisation.plot(plots, {
       barmode: 'stack',
-      title: 'Commits per File<br><sub>Number of commits by file (top ' + maxNumberOfResults + ')</sub>',
+      title: `Commits per File<br><sub>Number of commits by file (top ${cappedFiles.length} of ${files.length})</sub>`,
       xaxis: {
         title: {
           text: 'File'
