@@ -8,16 +8,17 @@ const ComponentProvider = core.ComponentProvider
 runTest()
 
 async function runTest () {
-  const cp = await ComponentProvider({
-    customRepositories: []
-  })
   const sourcesNames = analysisPkg.seeance.depends_on
+  const cp = await ComponentProvider({
+    customRepositories: [],
+    onlyLoad: sourcesNames
+  })
   await cp.init()
   const datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)))
   const result = await core.analyze(process.argv[2], process.argv[3], datasources, [], {
     package: analysisPkg,
     module: analysis,
-    config: analysisPkg.seeance
+    config: {}
   })
   // Solution by stackoverflow user JLeXanDR
   // (https://stackoverflow.com/questions/35995273/how-to-run-html-file-using-node-js)

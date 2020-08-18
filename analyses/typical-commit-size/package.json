@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^2.0.4",
-    "seeance-analysis-core": "^0.5.1",
+    "seeance-analysis-core": "^0.6.2",
     "rimraf": "^3.0.2",
     "simple-git": "^2.8.0"
   },
