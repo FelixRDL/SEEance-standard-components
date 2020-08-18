@@ -56,15 +56,15 @@ module.exports = async function (input, config, visualisation) {
 
     resolve(visualisation.plot(
       plots, {
-        title: 'Estimated Hours',
+        title: 'Estimated Coding Time<br><sub>Coding time per author estimated through commit activity</sub>',
         xaxis: {
           title: {
-            text: 'Authors'
+            text: 'Author'
           }
         },
         yaxis: {
           title: {
-            text: 'Estimated hours spent programming'
+            text: 'Estimated Time'
           }
         }
       }))
