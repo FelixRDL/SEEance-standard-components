@@ -8,11 +8,11 @@ const ComponentProvider = core.ComponentProvider
 runTest()
 
 async function runTest () {
+  const sourcesNames = analysisPkg.seeance.depends_on
   const cp = await ComponentProvider({
     customRepositories: [],
-    reloadOnly: true
+    onlyLoad: sourcesNames
   })
-  const sourcesNames = analysisPkg.seeance.depends_on
   await cp.init()
   const datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)))
   const result = await core.analyze(process.argv[2], process.argv[3], datasources, [], {

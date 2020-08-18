@@ -26,7 +26,7 @@ module.exports = async function (input, config, visualisation) {
   })
   return new Promise((resolve, reject) => {
     resolve(visualisation.plot(plots, {
-      title: 'Line Ownership in current Project',
+      title: 'Total Line Ownership<br><sub>Number of lines created by author</sub>',
       xaxis: {
         title: {
           text: 'Author'
@@ -34,7 +34,7 @@ module.exports = async function (input, config, visualisation) {
       },
       yaxis: {
         title: {
-          text: 'Number of created lines'
+          text: 'Number of lines'
         }
       }
     }))
