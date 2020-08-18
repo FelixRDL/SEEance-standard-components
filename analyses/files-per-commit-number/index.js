@@ -59,7 +59,7 @@ module.exports = async function (input, config, visualisation) {
     const files = Object.keys(commitsForFiles)
       .sort((k, i) => commitsForFiles[k].length - commitsForFiles[i].length)
       .filter(f => f !== '/dev/null')
-    const cappedFiles = files.length > maxNumberOfResults ? files.slice(files.length - maxNumberOfResults - 1) : files
+    const cappedFiles = files.length > maxNumberOfResults ? files.slice(files.length - maxNumberOfResults) : files
 
     const plots = [{
       x: cappedFiles,
