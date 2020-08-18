@@ -1,4 +1,5 @@
 const TICK_TRUNCATE_MAX = 10
+const MAX_NUMBER_OF_ENTRIES = 30
 
 function truncate (s, MAX_LENGTH) {
   return s.length > MAX_LENGTH ? '...' + s.substring(s.length - MAX_LENGTH - 4, s.length) : s
@@ -33,6 +34,7 @@ function commitsByFilesAndAuthorsMapper (acc, commit) {
 }
 
 module.exports = async function (input, config, visualisation) {
+  const maxNumberOfResults = config.max_number_of_results || MAX_NUMBER_OF_ENTRIES
   return new Promise((resolve, reject) => {
     const standardColors = [
       '#1f77b4',
@@ -57,21 +59,23 @@ module.exports = async function (input, config, visualisation) {
     const files = Object.keys(commitsForFiles)
       .sort((k, i) => commitsForFiles[k].length - commitsForFiles[i].length)
       .filter(f => f !== '/dev/null')
+    const cappedFiles = files.length > maxNumberOfResults ? files.slice(files.length - maxNumberOfResults - 1) : files
 
     const plots = [{
-      x: files,
-      y: files.map(f => 0),
+      x: cappedFiles,
+      y: cappedFiles.map(f => 0),
       type: 'bar',
       name: 'total',
       showlegend: false,
       hoverinfo: 'none'
     }].concat(Object.keys(commitsByAuthors).sort((a, b) => a.toLowerCase() <= b.toLowerCase() ? -1 : 1).map((k, i) => {
       const xs = Object.keys(commitsByAuthors[k].files)
+        .filter(file => cappedFiles.includes(file))
         .filter(f => f !== '/dev/null')
       return {
         name: k,
         x: xs,
-        y: Object.keys(commitsByAuthors[k].files)
+        y: xs
           .filter(f => f !== '/dev/null')
           .map(f => commitsByAuthors[k].files[f]),
         text: xs,
@@ -84,7 +88,7 @@ module.exports = async function (input, config, visualisation) {
 
     resolve(visualisation.plot(plots, {
       barmode: 'stack',
-      title: 'Commits per File',
+      title: 'Commits per File<br><sub>Number of commits by file (top ' + maxNumberOfResults + ')</sub>',
       xaxis: {
         title: {
           text: 'File'
