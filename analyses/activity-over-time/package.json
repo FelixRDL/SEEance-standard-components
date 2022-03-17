@@ -16,7 +16,7 @@
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
     "seeance-analysis-core": "^0.6.2",
-    "simple-git": "^2.8.0"
+    "simple-git": "^3.3.0"
   },
   "seeance": {
     "depends_on": [
